@@ -1,0 +1,25 @@
+{
+	"name": "ecma-package",
+	"version": "0.0.0",
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"main": "./dist/index.cjs",
+	"types": "./dist/index.d.cts",
+	"scripts": {
+		"build": "tsup-node",
+		"dev": "tsup-node --watch",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@configs/eslint-config": "workspace:*",
+		"load-tsconfig": "0.2.5"
+	}
+}

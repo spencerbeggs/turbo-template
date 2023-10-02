@@ -1,2 +1,2 @@
 # turbo-template
-A nicely configured starting point for projects configured with Turborepo. 
+A template repo for setting up a Turborepo with sensible default configurations. 

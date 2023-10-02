@@ -1,0 +1,7 @@
+{
+	"name": "@generator/ecma-package",
+	"version": "0.0.0",
+	"devDependencies": {
+		"@turbo/gen": "1.10.14"
+	}
+}
