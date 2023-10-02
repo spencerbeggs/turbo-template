@@ -1,6 +1,6 @@
 {
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-	"eslint.workingDirectories": ["./packages/example", "./generators/ecma-package"],
+	"eslint.workingDirectories": ["./generators/ecma-package"],
 	"eslint.experimental.useFlatConfig": true,
 	"eslint.useESLintClass": true,
 	"eslint.debug": true,
