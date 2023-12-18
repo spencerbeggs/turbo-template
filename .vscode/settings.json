@@ -1,6 +1,13 @@
 {
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-	"eslint.workingDirectories": ["./configs/eslint", "./configs/tsconfig", "./configs/jest", "./generators/ecma-package"],
+	"eslint.workingDirectories": [
+		"./lib/configs/eslint",
+		"./lib/configs/tsconfig",
+		"./lib/configs/jest",
+		"./lib/helpers/plop-add-turbo-workspace",
+		"./lib/helpers/plop-add-vscode-eslint-workspace",
+		"./lib/generators/ecma-package"
+	],
 	"eslint.experimental.useFlatConfig": true,
 	"eslint.useESLintClass": true,
 	"eslint.debug": true,
@@ -26,9 +33,9 @@
 		"editor.formatOnSave": true
 	},
 	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true,
-		"source.fixAll.markdownlint": true,
-		"source.addMissingImports": true
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.markdownlint": "explicit",
+		"source.addMissingImports": "explicit"
 	},
 	"prettier.enable": true,
 	"prettier.configPath": ".prettierrc",

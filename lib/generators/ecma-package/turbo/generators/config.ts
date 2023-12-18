@@ -1,6 +1,7 @@
 import type { PlopTypes } from "@turbo/gen";
+import type { AddPNPMWorkspacePackageAction } from "plop-add-turbo-pnpm-workspace";
+import type { AddAddVSCodeESLintWorkspace } from "plop-add-vscode-eslint-workspace";
 import { valid } from "semver";
-import { AddPNPMWorkspacePackageAction, modifyYAMLFile } from "./modify-yaml-file";
 import { Repo } from "./repo";
 
 interface ModifyJSONAction extends PlopTypes.ActionConfig {
@@ -24,17 +25,11 @@ interface TurboAnswers extends Record<string, unknown> {
 	};
 }
 
-type ActionTypes = PlopTypes.ActionType | ModifyJSONAction | AddPNPMWorkspacePackageAction;
+type ActionTypes = PlopTypes.ActionType | ModifyJSONAction | AddPNPMWorkspacePackageAction | AddAddVSCodeESLintWorkspace;
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-	plop.load("plop-pack-json-modify");
-
-	plop.setActionType("add-pnpm-workspace-package", async (answers) => {
-		const turboAnswers = answers as TurboAnswers;
-		await modifyYAMLFile(`${turboAnswers.turbo.paths.root}/pnpm-workspace.yaml`, turboAnswers.dir);
-		return "YAML file has been updated.";
-	});
-
+	plop.load("plop-add-turbo-pnpm-workspace");
+	plop.load("plop-add-vscode-eslint-workspace");
 	// create a generator
 	plop.setGenerator("ECMA package", {
 		description: "Adds a new ECMA package to the project",
@@ -193,15 +188,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 					templateFiles: ["templates/**/*", "!templates/package.json", "!templates/tsconfig.json"]
 				});
 				actions.push({
-					type: "json-modify-file",
-					force: false,
-					JSONFile: `${data.turbo.paths.root}/.vscode/settings.json`,
-					JSONKey: "eslint.workingDirectories",
-					JSONEntryValue: `${data.dir}`
-				} as ModifyJSONAction);
+					type: "add-vscode-eslint-workspace",
+					workspace: data.dir as string
+				});
 				actions.push({
-					type: "add-pnpm-workspace-package",
-					path: data.dir as string
+					type: "add-turbo-pnpm-workspace",
+					workspace: data.dir as string
 				});
 			}
 			return actions;
