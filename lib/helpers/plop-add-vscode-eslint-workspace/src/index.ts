@@ -10,16 +10,16 @@ interface TurboAnswers extends Record<string, unknown> {
 	};
 }
 
-export interface AddAddVSCodeESLintWorkspace extends PlopTypes.ActionConfig {
+export interface AddVSCodeESLintWorkspaceAction extends PlopTypes.ActionConfig {
 	type: "add-vscode-eslint-workspace";
 	workspace: string;
 }
 
-export default function (plop: PlopTypes.NodePlopAPI): void {
+export default async function (plop: PlopTypes.NodePlopAPI): Promise<void> {
 	plop.setDefaultInclude({ actionTypes: true });
 	plop.setActionType("add-vscode-eslint-workspace", async (answers, config) => {
 		const { turbo } = answers as TurboAnswers;
-		let { workspace } = config as AddAddVSCodeESLintWorkspace;
+		let { workspace } = config as AddVSCodeESLintWorkspaceAction;
 		if (!workspace.startsWith("./")) {
 			workspace = `./${workspace}`;
 		}
