@@ -140,40 +140,22 @@ importers:
 
   lib/generators/ecma-package:
     dependencies:
-      '@sindresorhus/slugify':
-        specifier: ^2.2.1
-        version: 2.2.1
-      '@turbo/gen':
-        specifier: 1.11.2
-        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
-      octokit:
-        specifier: ^3.1.2
-        version: 3.1.2
       plop-add-turbo-pnpm-workspace:
         specifier: workspace:*
         version: link:../../helpers/plop-add-turbo-pnpm-workspace
       plop-add-vscode-eslint-workspace:
         specifier: workspace:*
         version: link:../../helpers/plop-add-vscode-eslint-workspace
-      semver:
-        specifier: ^7.5.4
-        version: 7.5.4
-      validate-npm-package-name:
-        specifier: ^5.0.0
-        version: 5.0.0
+      plop-bootstrap-repo:
+        specifier: workspace:*
+        version: link:../../helpers/plop-bootstrap-repo
     devDependencies:
       '@configs/tsconfig':
         specifier: workspace:*
         version: link:../../configs/tsconfig
-      '@octokit/types':
-        specifier: ^12.4.0
-        version: 12.4.0
-      '@types/semver':
-        specifier: ^7.5.5
-        version: 7.5.6
-      '@types/validate-npm-package-name':
-        specifier: ^4.0.2
-        version: 4.0.2
+      '@turbo/gen':
+        specifier: 1.11.2
+        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
 
   lib/helpers/plop-add-turbo-pnpm-workspace:
     dependencies:
@@ -199,6 +181,37 @@ importers:
       '@turbo/gen':
         specifier: 1.11.2
         version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
+
+  lib/helpers/plop-bootstrap-repo:
+    dependencies:
+      '@turbo/gen':
+        specifier: 1.11.2
+        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
+      octokit:
+        specifier: ^3.1.2
+        version: 3.1.2
+      semver:
+        specifier: ^7.5.4
+        version: 7.5.4
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
+      validate-npm-package-name:
+        specifier: ^5.0.0
+        version: 5.0.0
+    devDependencies:
+      '@configs/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
+      '@octokit/types':
+        specifier: ^12.4.0
+        version: 12.4.0
+      '@types/semver':
+        specifier: ^7.5.5
+        version: 7.5.6
+      '@types/validate-npm-package-name':
+        specifier: ^4.0.2
+        version: 4.0.2
 
 packages:
 
@@ -2852,21 +2865,6 @@ packages:
   /@sinclair/typebox@0.27.8:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  /@sindresorhus/slugify@2.2.1:
-    resolution: {integrity: sha512-MkngSCRZ8JdSOCHRaYd+D01XhvU3Hjy6MGl06zhOk614hp9EOAp5gIkBeQg7wtmxpitU6eAL4kdiRMcJa2dlrw==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@sindresorhus/transliterate': 1.6.0
-      escape-string-regexp: 5.0.0
-    dev: false
-
-  /@sindresorhus/transliterate@1.6.0:
-    resolution: {integrity: sha512-doH1gimEu3A46VX6aVxpHTeHrytJAG6HgdxntYnCFiIFHEM/ZGpG8KiZGBChchjQmG0XFIBL552kBTjVcMZXwQ==}
-    engines: {node: '>=12'}
-    dependencies:
-      escape-string-regexp: 5.0.0
-    dev: false
-
   /@sinonjs/commons@3.0.0:
     resolution: {integrity: sha512-jXBtWAF4vmdNmZgD5FoKsVLv3rPgDnLgPbU84LIJ3otV44vJlDRokVng5v8NFJdCf/da9legHcKaRuZs4L7faA==}
     dependencies:
@@ -4446,11 +4444,6 @@ packages:
   /escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
-    dev: false
-
-  /escape-string-regexp@5.0.0:
-    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
-    engines: {node: '>=12'}
     dev: false
 
   /escodegen@2.1.0:
@@ -7470,6 +7463,11 @@ packages:
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
+    dev: false
 
   /smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}

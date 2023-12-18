@@ -6,6 +6,7 @@
 		"./lib/configs/jest",
 		"./lib/helpers/plop-add-turbo-workspace",
 		"./lib/helpers/plop-add-vscode-eslint-workspace",
+		"./lib/helpers/plop-bootstrap-repo",
 		"./lib/generators/ecma-package"
 	],
 	"eslint.experimental.useFlatConfig": true,
