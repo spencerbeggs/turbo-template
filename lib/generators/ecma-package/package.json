@@ -6,19 +6,18 @@
 		"eslint-fix": "eslint --fix"
 	},
 	"dependencies": {
-		"js-yaml": "^4.1.0",
-		"plop-pack-json-modify": "^1.1.0",
-		"octokit": "^3.1.2",
-		"@turbo/gen": "1.10.16",
 		"@sindresorhus/slugify": "^2.2.1",
+		"@turbo/gen": "1.11.2",
+		"octokit": "^3.1.2",
+		"plop-add-turbo-pnpm-workspace": "workspace:*",
+		"plop-add-vscode-eslint-workspace": "workspace:*",
 		"semver": "^7.5.4",
 		"validate-npm-package-name": "^5.0.0"
 	},
 	"devDependencies": {
-		"@types/js-yaml": "^4.0.9",
-		"@octokit/types": "^12.3.0",
+		"@configs/tsconfig": "workspace:*",
+		"@octokit/types": "^12.4.0",
 		"@types/semver": "^7.5.5",
-		"@types/validate-npm-package-name": "^4.0.2",
-		"@configs/tsconfig": "workspace:*"
+		"@types/validate-npm-package-name": "^4.0.2"
 	}
 }
