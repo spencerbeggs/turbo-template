@@ -19,6 +19,7 @@
 	},
 	"files": [
 		"base.json",
+		"commonjs.json",
 		"ecma.json",
 		"test.json"
 	]
