@@ -20,7 +20,7 @@ export interface AddPNPMWorkspacePackageAction extends PlopTypes.ActionConfig {
 	workspace: string;
 }
 
-export default function (plop: PlopTypes.NodePlopAPI): void {
+export default async function (plop: PlopTypes.NodePlopAPI): Promise<void> {
 	plop.setDefaultInclude({ actionTypes: true });
 	plop.setActionType("add-turbo-pnpm-workspace", async (answers, config) => {
 		const { turbo } = answers as TurboAnswers;
