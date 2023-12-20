@@ -1,2 +1,4 @@
 packages:
-  - lib/*/*
+  - lib/configs/*
+  - lib/generators/*
+  - lib/helpers/*

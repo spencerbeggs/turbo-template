@@ -1,8 +1,7 @@
 import type { PlopTypes } from "@turbo/gen";
 import type { AddPNPMWorkspacePackageAction } from "plop-add-turbo-pnpm-workspace";
 import type { AddVSCodeESLintWorkspaceAction } from "plop-add-vscode-eslint-workspace";
-import { bootstrap, type BootstrapPackageJsonAction } from "plop-bootstrap-repo";
-import type { Merge } from "type-fest";
+import { bootstrap, type BootstrapPackageJsonAction, type BootstrapRepoAnswers } from "plop-bootstrap-repo";
 
 type ActionTypes =
 	| PlopTypes.ActionType
@@ -18,23 +17,15 @@ export default async function generator(plop: PlopTypes.NodePlopAPI): Promise<vo
 	// create a generator
 	plop.setGenerator("ECMA package", {
 		description: "Adds a new ECMA package to the project",
-		prompts: [
-			{
-				name: "workspace",
-				message: "Package directory?",
-				type: "directory",
-				default: "pkg"
-			},
-			...bootstrap.prompts
-		],
+		prompts: [...bootstrap.prompts],
 		actions: (answers) => {
-			const { workspace } = answers as Merge<typeof answers, BootstrapPackageJsonAction>;
+			const { workspace } = answers as BootstrapRepoAnswers;
 			const actions: Array<ActionTypes> = [];
 
 			actions.push({
 				type: "bootstrap-package-json",
-				workspace: workspace as string,
-				templateFile: "turbo/generators/templates/package.json"
+				templateFile: "turbo/generators/templates/package.json",
+				workspace
 			});
 
 			actions.push({
