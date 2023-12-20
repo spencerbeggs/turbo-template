@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import type { PlopTypes } from "@turbo/gen";
+import { resolveConfig, format } from "prettier";
 
 interface TurboAnswers extends Record<string, unknown> {
 	turbo: {
@@ -34,8 +35,12 @@ export default async function (plop: PlopTypes.NodePlopAPI): Promise<void> {
 			workspaces.add(workspace);
 			settings["eslint.workingDirectories"] = Array.from(workspaces);
 
+			// Format the modified settings.json with Prettier
+			const options = await resolveConfig(`${turbo.paths.root}/.prettierrc`);
+			const formatted = await format(JSON.stringify(settings, null, 2), options ?? undefined);
+
 			// Write the modified settings.json back to the file
-			await writeFile(settingsPath, JSON.stringify(settings, null, 2), "utf8");
+			await writeFile(settingsPath, formatted, "utf8");
 			return `Added '${workspace}' to settings.json`;
 		} catch (err) {
 			console.error(err);
