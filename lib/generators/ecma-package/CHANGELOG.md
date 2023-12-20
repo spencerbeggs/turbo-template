@@ -1,5 +1,18 @@
 # @generator/ecma-package
 
+## 1.1.0
+
+### Minor Changes
+
+- d8489ab: Extracts repo bootstrapping into sharable Plop action for top-level configs
+
+### Patch Changes
+
+- Updated dependencies [b985e21]
+- Updated dependencies [d8489ab]
+  - plop-add-vscode-eslint-workspace@1.1.0
+  - plop-bootstrap-repo@1.1.0
+
 ## 1.0.1
 
 ### Patch Changes
