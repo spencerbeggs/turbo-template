@@ -1,5 +1,11 @@
 # plop-add-vscode-eslint-workspace
 
+## 1.1.0
+
+### Minor Changes
+
+- b985e21: Uses prettier to format settings.json file after modification.
+
 ## 1.0.1
 
 ### Patch Changes
