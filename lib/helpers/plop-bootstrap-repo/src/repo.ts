@@ -55,8 +55,26 @@ export class Repo {
 		return this.#client;
 	}
 
+	async description() {
+		const description = await run("gh repo view --json description --jq '.description'");
+		return description;
+	}
+
+	async title() {
+		const title = await run("gh repo view --json name --jq '.name'");
+		return title
+			.split("-")
+			.join(" ")
+			.replace(/\w\S*/g, function (txt: string) {
+				return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
+			});
+	}
+
 	static async create(url?: string) {
-		let remote = url ?? (await run("git config --get remote.origin.url"));
+		let remote = url;
+		if (!remote) {
+			remote = await run("git config --get remote.origin.url");
+		}
 		if (remote.startsWith("git@github.com:")) {
 			remote = `https://github.com/${remote.replace("git@github.com:", "").trim()}`;
 		}
