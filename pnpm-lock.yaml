@@ -140,15 +140,15 @@ importers:
 
   lib/generators/ecma-package:
     dependencies:
-      plop-add-turbo-pnpm-workspace:
-        specifier: workspace:*
-        version: link:../../helpers/plop-add-turbo-pnpm-workspace
       plop-add-vscode-eslint-workspace:
         specifier: workspace:*
         version: link:../../helpers/plop-add-vscode-eslint-workspace
       plop-bootstrap-repo:
         specifier: workspace:*
         version: link:../../helpers/plop-bootstrap-repo
+      plop-turbo-pnpm-workspace:
+        specifier: workspace:*
+        version: link:../../helpers/plop-turbo-pnpm-workspace
     devDependencies:
       '@configs/tsconfig':
         specifier: workspace:*
@@ -156,22 +156,6 @@ importers:
       '@turbo/gen':
         specifier: 1.11.2
         version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
-
-  lib/helpers/plop-add-turbo-pnpm-workspace:
-    dependencies:
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
-    devDependencies:
-      '@configs/tsconfig':
-        specifier: workspace:*
-        version: link:../../configs/tsconfig
-      '@turbo/gen':
-        specifier: 1.11.2
-        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
 
   lib/helpers/plop-add-vscode-eslint-workspace:
     dependencies:
@@ -231,6 +215,22 @@ importers:
       '@types/validate-npm-package-name':
         specifier: ^4.0.2
         version: 4.0.2
+
+  lib/helpers/plop-turbo-pnpm-workspace:
+    dependencies:
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
+    devDependencies:
+      '@configs/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
+      '@turbo/gen':
+        specifier: 1.11.2
+        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
+      '@types/js-yaml':
+        specifier: ^4.0.9
+        version: 4.0.9
 
 packages:
 
