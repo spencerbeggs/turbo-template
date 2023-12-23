@@ -1,5 +1,15 @@
 # @generator/ecma-package
 
+## 1.1.1
+
+### Patch Changes
+
+- 24a0224: Renames plop-add-turbo-pnpm-workspace package to plop-turbo-pnpm-workspace to add more universal functions
+- 4970814: Updates ECMA package generator to use new Plop action interfaces from plop-turbo-vscode-eslint
+- Updated dependencies [24a0224]
+- Updated dependencies [258f403]
+  - plop-turbo-pnpm-workspace@2.0.0
+
 ## 1.1.0
 
 ### Minor Changes
