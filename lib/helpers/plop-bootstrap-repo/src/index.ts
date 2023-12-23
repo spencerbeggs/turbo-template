@@ -359,7 +359,6 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 	});
 
 	plop.setActionType("bootstrap-package-json", async (answers, config) => {
-		console.log(answers);
 		const { root, child, author, turbo, init } = answers as Merge<TurboShim, BootstrapRepoAnswers>;
 		const { templateFile, workspace } = config as BootstrapPackageJsonAction;
 		const projectWorkspace = {
