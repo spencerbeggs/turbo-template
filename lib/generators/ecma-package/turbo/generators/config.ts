@@ -1,17 +1,17 @@
 import type { PlopTypes } from "@turbo/gen";
-import type { AddVSCodeESLintWorkspaceAction } from "plop-add-vscode-eslint-workspace";
 import { bootstrap, type BootstrapPackageJsonAction, type BootstrapRepoAnswers } from "plop-bootstrap-repo";
 import type { AddPNPMWorkspaceAction } from "plop-turbo-pnpm-workspace";
+import type { AddESLintWorkingDirectoryAction } from "plop-turbo-vscode-eslint";
 
 type ActionTypes =
 	| PlopTypes.ActionType
 	| AddPNPMWorkspaceAction
-	| AddVSCodeESLintWorkspaceAction
+	| AddESLintWorkingDirectoryAction
 	| BootstrapPackageJsonAction;
 
 export default async function generator(plop: PlopTypes.NodePlopAPI): Promise<void> {
 	plop.load("plop-turbo-pnpm-workspace");
-	plop.load("plop-add-vscode-eslint-workspace");
+	plop.load("plop-turbo-vscode-eslint");
 	plop.load("plop-bootstrap-repo");
 
 	// create a generator
@@ -46,7 +46,7 @@ export default async function generator(plop: PlopTypes.NodePlopAPI): Promise<vo
 			});
 
 			actions.push({
-				type: "add-vscode-eslint-workspace",
+				type: "add-eslint-working-directory",
 				workspace
 			});
 

@@ -7,7 +7,7 @@
 	},
 	"dependencies": {
 		"plop-turbo-pnpm-workspace": "workspace:*",
-		"plop-add-vscode-eslint-workspace": "workspace:*",
+		"plop-turbo-vscode-eslint": "workspace:*",
 		"plop-bootstrap-repo": "workspace:*"
 	},
 	"devDependencies": {
