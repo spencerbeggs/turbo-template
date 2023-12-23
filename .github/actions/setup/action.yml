@@ -1,0 +1,36 @@
+name: Setup
+description: Setup pnpm cache
+outputs:
+  STORE_PATH:
+    description: "pnpm store path"
+    value: ${{ steps.pnpm-store-path.outputs.STORE_PATH }}
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v2
+      name: Install pnpm
+      with:
+        version: 8.11.0
+        run_install: false
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.2.0
+        cache: "pnpm"
+    - name: Get pnpm store directory
+      id: pnpm-store-path
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+    - uses: actions/cache@v3
+      name: Setup pnpm cache
+      env:
+        STORE_PATH: ${{ steps.pnpm-store-path.outputs.STORE_PATH }}
+      with:
+        path: ${{ env.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
