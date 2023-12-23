@@ -1,5 +1,6 @@
 {
-	"name": "plop-add-turbo-pnpm-workspace",
+	"name": "plop-turbo-pnpm-workspace",
+	"description": "Plop actions to modify pnpm workspaces from a Turporepo generator.",
 	"version": "1.0.0",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",

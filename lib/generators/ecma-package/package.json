@@ -6,7 +6,7 @@
 		"eslint-fix": "eslint --fix"
 	},
 	"dependencies": {
-		"plop-add-turbo-pnpm-workspace": "workspace:*",
+		"plop-turbo-pnpm-workspace": "workspace:*",
 		"plop-add-vscode-eslint-workspace": "workspace:*",
 		"plop-bootstrap-repo": "workspace:*"
 	},
