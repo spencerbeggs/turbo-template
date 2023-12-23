@@ -140,28 +140,15 @@ importers:
 
   lib/generators/ecma-package:
     dependencies:
-      plop-add-vscode-eslint-workspace:
-        specifier: workspace:*
-        version: link:../../helpers/plop-add-vscode-eslint-workspace
       plop-bootstrap-repo:
         specifier: workspace:*
         version: link:../../helpers/plop-bootstrap-repo
       plop-turbo-pnpm-workspace:
         specifier: workspace:*
         version: link:../../helpers/plop-turbo-pnpm-workspace
-    devDependencies:
-      '@configs/tsconfig':
+      plop-turbo-vscode-eslint:
         specifier: workspace:*
-        version: link:../../configs/tsconfig
-      '@turbo/gen':
-        specifier: 1.11.2
-        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
-
-  lib/helpers/plop-add-vscode-eslint-workspace:
-    dependencies:
-      prettier:
-        specifier: ^3.1.1
-        version: 3.1.1
+        version: link:../../helpers/plop-turbo-vscode-eslint
     devDependencies:
       '@configs/tsconfig':
         specifier: workspace:*
@@ -231,6 +218,19 @@ importers:
       '@types/js-yaml':
         specifier: ^4.0.9
         version: 4.0.9
+
+  lib/helpers/plop-turbo-vscode-eslint:
+    dependencies:
+      prettier:
+        specifier: ^3.1.1
+        version: 3.1.1
+    devDependencies:
+      '@configs/tsconfig':
+        specifier: workspace:*
+        version: link:../../configs/tsconfig
+      '@turbo/gen':
+        specifier: 1.11.2
+        version: 1.11.2(@types/node@20.10.5)(typescript@5.3.3)
 
 packages:
 

@@ -1,4 +1,4 @@
-# plop-add-vscode-eslint-workspace
+# plop-turbo-vscode-eslint
 
 ## 1.1.0
 
