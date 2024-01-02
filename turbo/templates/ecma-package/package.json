@@ -41,7 +41,7 @@
 		"dev": "tsup-node --watch",
 		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
 		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
-		"package": "cd dist && pnpm pack --pack-destination ../../../../build",
+		"package": "build=$(while [[ ! -f \"$(pwd)/pnpm-workspace.yaml\" ]]; do cd ..; done; pwd)/build && cd dist && pnpm pack --pack-destination $build",
 		"publish-packages": "pnpm publish --no-git-checks --dry-run dist",
 		"test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' TS_JEST_DISABLE_VER_CHECKER=false pnpm exec jest --colors --passWithNoTests",
 		"typecheck": "tsc --noEmit"

@@ -34,12 +34,12 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 				templateFile: "../templates/ecma-package/tsconfig.json",
 				transform(template: string) {
 					const pkg = JSON.parse(template);
-					pkg.extends = `./node_modules/${pkg.extends}`;
+					if (pkg.extends.startsWith("@")) {
+						pkg.extends = `./node_modules/${pkg.extends}`;
+					}
 					return JSON.stringify(pkg, null, 2);
 				}
 			});
-
-			console.log(workspace);
 
 			actions.push({
 				type: "addMany",
