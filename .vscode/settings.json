@@ -26,9 +26,9 @@
 		"pnpm-lock.yaml": true
 	},
 	"files.exclude": {
-		"**/node_modules": true,
+		"**/node_modules": false,
 		"**/.turbo": true,
-		"**/dist": true,
+		"**/dist": false,
 		"**/.coverage": true
 	},
 	"[yaml]": {

@@ -4,7 +4,6 @@
 	"description": "A nicely configured starting point for projects configured with Turborepo.",
 	"packageManager": "pnpm@8.13.1",
 	"license": "MIT",
-	"type": "module",
 	"homepage": "https://github.com/spencerbeggs/turbo-template#readme",
 	"repository": {
 		"type": "git",
@@ -21,12 +20,12 @@
 		"dev": "turbo run dev --filter=@template/*",
 		"dev:templates": "turbo run dev --filter=@template/*",
 		"gen": "turbo generate",
-		"lint": "turbo run eslint --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"lint": "turbo run eslint --filter=!@template/* --filter=!plop-* --filter=!@config/*",
 		"lint:all": "turbo run eslint",
-		"lint-fix": "turbo run eslint-fix --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"lint-fix": "turbo run eslint-fix --filter=!@template/* --filter=!plop-* --filter=!@config/*",
 		"lint-fix:all": "turbo run eslint-fix",
-		"publish-packages": "turbo run publish-packages --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
-		"test": "turbo run test --color --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"publish-packages": "turbo run publish-packages --filter=!@template/* --filter=!plop-* --filter=!@config/*",
+		"test": "turbo run test --color --filter=!@template/* --filter=!plop-* --filter=!@config/*",
 		"test:all": "turbo run test --color"
 	},
 	"devDependencies": {

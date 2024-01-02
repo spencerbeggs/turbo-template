@@ -2,13 +2,12 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import type { PlopTypes } from "@turbo/gen";
 import { load } from "js-yaml";
-import get from "lodash/get";
-import set from "lodash/set";
+import { get, set } from "lodash";
 import { resolveConfig, format, type Options as PrettierOptions } from "prettier";
 import { valid } from "semver";
 import slugify from "slugify";
 import type { Merge, PackageJson } from "type-fest";
-import { Repo } from "./repo";
+import { Repo } from "./repo.js";
 
 type TurboShim = {
 	turbo: {

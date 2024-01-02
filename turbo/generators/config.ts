@@ -10,9 +10,9 @@ type ActionTypes =
 	| BootstrapPackageJsonAction;
 
 export default function generator(plop: PlopTypes.NodePlopAPI): void {
-	plop.load("@plop/turbo-pnpm-workspace");
 	plop.load("@plop/turbo-vscode-eslint");
 	plop.load("@plop/bootstrap-repo");
+	plop.load("@plop/turbo-pnpm-workspace");
 
 	// create a generator
 	plop.setGenerator("ECMA package", {

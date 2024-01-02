@@ -5,7 +5,7 @@
 		"esm": true,
 		"compilerOptions": {
 			"target": "ES2018",
-			"esModuleInterop": false
+			"esModuleInterop": true
 		}
 	}
 }

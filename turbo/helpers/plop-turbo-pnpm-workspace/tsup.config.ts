@@ -2,44 +2,62 @@ import { cp, writeFile } from "node:fs/promises";
 import { defineConfig } from "tsup";
 import { PackageJson } from "type-fest";
 
-export default defineConfig(() => {
+export default defineConfig((options) => {
+	const isProduction = options.watch !== true;
 	return {
 		entry: ["./src/index.ts"],
 		format: "cjs",
+		outExtension({ format }) {
+			const ext = format === "cjs" ? "js" : "mjs";
+			return {
+				js: `.${ext}`,
+				dts: ".d.ts"
+			};
+		},
 		target: "node16",
 		platform: "node",
 		dts: true,
 		outDir: "dist",
 		publicDir: "public",
 		shims: true,
-		config: false,
-		splitting: true,
+		config: true,
 		minify: false,
-		sourcemap: false,
+		splitting: false,
+		cjsInterop: true,
+		// esbuildOptions(opts) {
+		// 	opts.target = "node16";
+		// 	opts.platform = "node";
+		// 	opts.logLevel = "verbose";
+		// 	opts.keepNames = true;
+		// },
+		sourcemap: !isProduction,
 		clean: true,
 		async onSuccess() {
 			const json = await import("./package.json");
 			const pkg = json.default as PackageJson;
-			if (pkg.files) {
-				for await (const file of pkg.files) {
-					await cp(`./${file}`, `dist/${file}`);
+			pkg.exports = {
+				".": {
+					import: "./index.js",
+					require: "./index.js",
+					default: "./index.js",
+					types: "./index.d.ts"
 				}
-			}
-			if (pkg.publishConfig) {
-				if (typeof pkg.publishConfig.main === "string") {
-					pkg.main = pkg.publishConfig.main;
-				}
-				if (typeof pkg.publishConfig.types === "string") {
-					pkg.types = pkg.publishConfig.types;
-				}
-				delete pkg.publishConfig;
-			}
+			};
+			delete pkg.publishConfig;
 			delete pkg.devDependencies;
 			delete pkg.scripts;
 			await writeFile("dist/package.json", JSON.stringify(pkg, null, 2), {
 				encoding: "utf-8"
 			});
-			await cp("./README.md", "./dist/README.md");
+			if (pkg.files) {
+				for await (const file of pkg.files) {
+					await cp(`./${file}`, `dist/${file}`);
+				}
+			}
+			if (isProduction) {
+				await cp("./LICENSE", "./dist/LICENSE");
+				await cp("./README.md", "./dist/README.md");
+			}
 		}
 	};
 });

@@ -2,18 +2,30 @@
 	"name": "@plop/turbo-vscode-eslint",
 	"description": "Plop actions for modifying VSCode's ESLint settings from a Turborepo generator.",
 	"version": "1.1.0",
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
 	"type": "commonjs",
-	"author": {
-		"name": "C. Spencer Beggs",
-		"email": "spencer@beg.gs"
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"require": "./src/index.ts",
+			"default": "./src/index.ts",
+			"types": "./src/index.ts"
+		}
 	},
 	"publishConfig": {
 		"directory": "dist",
 		"linkDirectory": true,
-		"main": "index.js",
-		"types": "index.d.ts"
+		"exports": {
+			".": {
+				"import": "./index.mjs",
+				"require": "./index.cjs",
+				"default": "./index.cjs",
+				"types": "./index.d.ts"
+			}
+		}
+	},
+	"author": {
+		"name": "C. Spencer Beggs",
+		"email": "spencer@beg.gs"
 	},
 	"scripts": {
 		"build": "tsup-node",
