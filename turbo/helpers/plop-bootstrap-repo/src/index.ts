@@ -532,6 +532,19 @@ export const bootstrap = {
 			}
 		},
 		{
+			name: "child.pkg.repository.url",
+			message: "The URL of your package's parent git repo?",
+			type: "input",
+			default: async () => {
+				const repo = await Repo.create();
+				return repo.remote;
+			},
+			when: async (answers: BootstrapRepoAnswers) => {
+				set(answers, "child.pkg.repository.url", answers.root.pkg.repository.url);
+				return false;
+			}
+		},
+		{
 			name: "root.pkg.version",
 			message: "Root package version?",
 			default: "0.0.0",
@@ -653,6 +666,9 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 			// Write package.json to its destination
 			await json.save();
 		}
+
+		console.log(root);
+		console.log(child);
 
 		try {
 			if (init) {
