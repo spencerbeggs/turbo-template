@@ -17,27 +17,29 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 	// create a generator
 	plop.setGenerator("ECMA package", {
 		description: "Adds a new ECMA package to the project",
-		prompts: [...bootstrap.prompts],
+		prompts: [],
 		actions: (answers) => {
-			const { workspace } = answers as BootstrapRepoAnswers;
+			const { workspace = "pkg" } = answers as BootstrapRepoAnswers;
 			const actions: Array<ActionTypes> = [];
 
-			actions.push({
-				type: "bootstrap-package-json",
-				templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/package.json",
-				workspace
-			});
+			// actions.push({
+			// 	type: "bootstrap-package-json",
+			// 	templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/package.json",
+			// 	workspace
+			// });
 
-			actions.push({
-				type: "add",
-				path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
-				templateFile: "../templates/ecma-package/tsconfig.json",
-				transform(template: string) {
-					const pkg = JSON.parse(template);
-					pkg.extends = `./node_modules/${pkg.extends}`;
-					return JSON.stringify(pkg, null, 2);
-				}
-			});
+			// actions.push({
+			// 	type: "add",
+			// 	path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
+			// 	templateFile: "../templates/ecma-package/tsconfig.json",
+			// 	transform(template: string) {
+			// 		const pkg = JSON.parse(template);
+			// 		pkg.extends = `./node_modules/${pkg.extends}`;
+			// 		return JSON.stringify(pkg, null, 2);
+			// 	}
+			// });
+
+			console.log(workspace);
 
 			actions.push({
 				type: "addMany",
