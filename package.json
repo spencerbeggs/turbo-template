@@ -2,9 +2,9 @@
 	"name": "turbo-template",
 	"version": "0.0.0",
 	"description": "A nicely configured starting point for projects configured with Turborepo.",
-	"type": "module",
-	"packageManager": "pnpm@8.11.0",
+	"packageManager": "pnpm@8.13.1",
 	"license": "MIT",
+	"type": "module",
 	"homepage": "https://github.com/spencerbeggs/turbo-template#readme",
 	"repository": {
 		"type": "git",
@@ -17,18 +17,27 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
-		"dev": "turbo run dev",
-		"gen": "turbo gen",
-		"lint": "turbo run eslint",
-		"lint-fix": "turbo run eslint-fix",
-		"eslint": "eslint .",
-		"test": "turbo run test --color"
+		"bootstrap": "turbo gen ./turbo/generators/config.ts",
+		"dev": "turbo run dev --filter=@template/*",
+		"dev:templates": "turbo run dev --filter=@template/*",
+		"gen": "turbo generate",
+		"lint": "turbo run eslint --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"lint:all": "turbo run eslint",
+		"lint-fix": "turbo run eslint-fix --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"lint-fix:all": "turbo run eslint-fix",
+		"publish-packages": "turbo run publish-packages --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"test": "turbo run test --color --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
+		"test:all": "turbo run test --color"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
-		"@configs/eslint": "workspace:*",
-		"@configs/jest": "workspace:*",
-		"@configs/tsconfig": "workspace:*",
+		"@config/eslint": "workspace:*",
+		"@config/jest": "workspace:*",
+		"@config/tsconfig": "workspace:*",
+		"@turbo/gen": "^1.11.2",
+		"@plop/bootstrap-repo": "workspace:*",
+		"@plop/turbo-pnpm-workspace": "workspace:*",
+		"@plop/turbo-vscode-eslint": "workspace:*",
 		"turbo": "1.11.2"
 	}
 }

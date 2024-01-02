@@ -1,3 +1,5 @@
-import config from "@configs/eslint";
+import { makeConfig } from "@config/eslint";
 
-export default config;
+const nextApps = ["turbo/templates/nextjs"];
+
+export default makeConfig(nextApps);

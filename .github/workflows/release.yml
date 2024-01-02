@@ -13,9 +13,15 @@ jobs:
         steps:
             - name: Checkout Repo
               uses: actions/checkout@v3
+              with:
+                  fetch-depth: 2
             - uses: ./.github/actions/setup
               name: Setup
             - name: Create Release Pull Request
+              id: changesets
               uses: changesets/action@v1
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Publish
+              if: steps.changesets.outputs.hasChangesets == 'false'
+              run: pnpm publish-packages

@@ -1,0 +1,33 @@
+{
+	"name": "@plop/turbo-pnpm-workspace",
+	"description": "Plop actions to modify pnpm workspaces from a Turporepo generator.",
+	"version": "2.0.0",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"type": "commonjs",
+	"author": {
+		"name": "C. Spencer Beggs",
+		"email": "spencer@beg.gs"
+	},
+	"publishConfig": {
+		"directory": "dist",
+		"linkDirectory": true,
+		"main": "index.js",
+		"types": "index.d.ts"
+	},
+	"scripts": {
+		"build": "tsup-node",
+		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
+		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"preinstall": "turbo run build --output-logs=errors-only",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"js-yaml": "^4.1.0"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*",
+		"@turbo/gen": "1.11.2",
+		"@types/js-yaml": "^4.0.9"
+	}
+}

@@ -1,0 +1,43 @@
+{
+	"name": "@plop/bootstrap-repo",
+	"version": "1.1.0",
+	"main": "src/index.ts",
+	"types": "src/index.ts",
+	"type": "commonjs",
+	"author": {
+		"name": "C. Spencer Beggs",
+		"email": "spencer@beg.gs"
+	},
+	"publishConfig": {
+		"directory": "dist",
+		"linkDirectory": true,
+		"main": "index.js",
+		"types": "index.d.ts"
+	},
+	"scripts": {
+		"build": "tsup-node",
+		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
+		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"preinstall": "turbo run build --output-logs=errors-only",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"semver": "^7.5.4",
+		"slugify": "^1.6.6",
+		"@turbo/gen": "1.11.2",
+		"js-yaml": "^4.1.0",
+		"octokit": "^3.1.2",
+		"lodash": "^4.17.21",
+		"validate-npm-package-name": "^5.0.0",
+		"prettier": "^3.1.1"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*",
+		"@octokit/types": "^12.4.0",
+		"@types/js-yaml": "^4.0.9",
+		"@types/semver": "^7.5.5",
+		"@types/lodash": "^4.14.202",
+		"@types/validate-npm-package-name": "^4.0.2",
+		"@turbo/gen": "1.11.2"
+	}
+}

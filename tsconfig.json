@@ -1,5 +1,5 @@
 {
-	"extends": "./node_modules/@configs/tsconfig/ecma.json",
+	"extends": "./node_modules/@config/tsconfig/ecma.json",
 	"ts-node": {
 		"skipIgnore": true,
 		"esm": true,

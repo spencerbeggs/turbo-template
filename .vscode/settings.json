@@ -1,13 +1,14 @@
 {
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
 	"eslint.workingDirectories": [
-		"./lib/configs/eslint",
-		"./lib/configs/tsconfig",
-		"./lib/configs/jest",
-		"./lib/helpers/plop-add-turbo-workspace",
-		"./lib/helpers/plop-add-vscode-eslint-workspace",
-		"./lib/helpers/plop-bootstrap-repo",
-		"./lib/generators/ecma-package"
+		"./turbo/configs/eslint",
+		"./turbo/configs/tsconfig",
+		"./turbo/configs/jest",
+		"./turbo/helpers/plop-add-turbo-workspace",
+		"./turbo/helpers/plop-add-vscode-eslint-workspace",
+		"./turbo/helpers/@plop/bootstrap-repo",
+		"./turbo/templates/ecma-package",
+		"./turbo/templates/nextjs"
 	],
 	"eslint.experimental.useFlatConfig": true,
 	"eslint.useESLintClass": true,
@@ -18,6 +19,7 @@
 	"[markdown]": {
 		"editor.formatOnSave": false
 	},
+	"markdownlint.ignore": ["**/CHANGELONG.md", "**/LICENSE"],
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,

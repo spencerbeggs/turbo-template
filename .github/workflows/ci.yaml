@@ -12,10 +12,12 @@ jobs:
         steps:
             - name: Checkout Repo
               uses: actions/checkout@v3
+              with:
+                  fetch-depth: 2
             - uses: ./.github/actions/setup
               name: Setup
             - name: Lint
-              run: pnpm run lint
+              run: pnpm run lint:all
     test:
         name: Test
         runs-on: ubuntu-latest
@@ -25,4 +27,4 @@ jobs:
             - uses: ./.github/actions/setup
               name: Setup
             - name: Test
-              run: pnpm run test
+              run: pnpm run test:all
