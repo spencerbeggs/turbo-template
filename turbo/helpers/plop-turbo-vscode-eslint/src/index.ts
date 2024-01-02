@@ -63,7 +63,7 @@ export interface AddESLintWorkingDirectoryAction extends PlopTypes.ActionConfig 
 
 export interface DeleteESLintWorkingDirectoryAction extends PlopTypes.ActionConfig {
 	type: "delete-eslint-working-directory";
-	/** The workspace path to remoive from eslint.workingDirectories in VSCode's settings.json */
+	/** The workspace path to remove from eslint.workingDirectories in VSCode's settings.json */
 	workspace: string;
 }
 
