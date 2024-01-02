@@ -23,6 +23,7 @@ type Pkg = {
 	name: string;
 	description: string;
 	version: string;
+	private: boolean;
 	homepage: string;
 	repository: {
 		url: string;
@@ -510,6 +511,12 @@ export const bootstrap = {
 			}
 		},
 		{
+			name: "child.pkg.private",
+			message: "Is this a private package?",
+			type: "confirm",
+			default: true
+		},
+		{
 			name: "child.pkg.homepage",
 			message: "The URL of your package's README.md?",
 			type: "input",
@@ -537,6 +544,16 @@ export const bootstrap = {
 					set(answers, "root.pkg.name", name);
 					set(answers, "root.pkg.description", description);
 				}
+				return false;
+			}
+		},
+		{
+			name: "root.pkg.private",
+			message: "Is this a private package?",
+			type: "confirm",
+			default: true,
+			when: (answers) => {
+				set(answers, "root.pkg.private", true);
 				return false;
 			}
 		},
@@ -594,6 +611,7 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 				json.delete("homepage");
 			}
 			json.version = pkg.version;
+			json.private = pkg.private;
 			if (author.name && author.email) {
 				json.author.name = author.name;
 				json.author.email = author.email;
