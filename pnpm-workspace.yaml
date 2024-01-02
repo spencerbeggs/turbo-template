@@ -1,5 +1,4 @@
 packages:
   - turbo/configs/*
-  - lib/generators/*
   - turbo/helpers/*
   - turbo/templates/*

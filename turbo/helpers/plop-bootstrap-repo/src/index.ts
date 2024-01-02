@@ -93,10 +93,6 @@ type Repository = {
 	url: string;
 };
 
-function isRepository(repository: Repository | string | undefined): repository is Repository {
-	return typeof repository === "object";
-}
-
 class PackageJSON {
 	source: string;
 	dest: string;
@@ -109,6 +105,11 @@ class PackageJSON {
 		this.data = data;
 		this.prettier = options.prettier ?? undefined;
 		this.isRoot = options.isRoot;
+	}
+
+	/** Typeguard to check if the .repository property of a package.json is an object or a string  */
+	static isRepository(repository: Repository | string | undefined): repository is Repository {
+		return typeof repository === "object";
 	}
 
 	static async create(answers: Merge<TurboShim, { workspace?: string }>) {
@@ -178,24 +179,24 @@ class PackageJSON {
 		const data = this.data;
 		return {
 			get type(): string | undefined {
-				if (isRepository(data.repository)) {
+				if (PackageJSON.isRepository(data.repository)) {
 					return data.repository.type;
 				}
 			},
 			set type(value: string) {
-				if (isRepository(data.repository)) {
+				if (PackageJSON.isRepository(data.repository)) {
 					set(data, "repository.type", value);
 				} else {
 					throw new Error("Cannot set type on repository string");
 				}
 			},
 			get url(): string | undefined {
-				if (isRepository(data.repository)) {
+				if (PackageJSON.isRepository(data.repository)) {
 					return data.repository.url;
 				}
 			},
 			set url(value: string) {
-				if (isRepository(data.repository)) {
+				if (PackageJSON.isRepository(data.repository)) {
 					set(data, "repository.url", value);
 				} else {
 					throw new Error("Cannot set url on repository string");
@@ -272,6 +273,10 @@ class ProjectConfig {
 		return pkg;
 	}
 
+	/**
+	 * Returns a Set of the packages property of pnpm-workspace.yaml omitting the utility workspaces.
+	 * This is useful for checking if the repo is already bootstrapped.
+	 * */
 	static async workspaces(): Promise<Set<string>> {
 		// Read the pnpm-workspace.yaml file
 		const yamlPath = resolve(__dirname, "../../../../pnpm-workspace.yaml");
@@ -282,9 +287,9 @@ class ProjectConfig {
 
 		// Modify the data
 		const pkgs = new Set(json.packages);
-		pkgs.delete("lib/configs/*");
-		pkgs.delete("lib/generators/*");
-		pkgs.delete("lib/helpers/*");
+		pkgs.delete("turbo/configs/*");
+		pkgs.delete("turbo/helpers/*");
+		pkgs.delete("turbo/templates/*");
 		return pkgs;
 	}
 }
