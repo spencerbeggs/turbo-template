@@ -24,7 +24,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 
 			actions.push({
 				type: "bootstrap-package-json",
-				templateFile: "turbo/generators/templates/package.json",
+				templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/package.json",
 				workspace
 			});
 
