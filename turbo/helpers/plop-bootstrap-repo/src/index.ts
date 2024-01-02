@@ -596,8 +596,8 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 		const { templateFile, workspace } = config as BootstrapPackageJsonAction;
 		const { root, child, author, init, turbo } = answers as Merge<TurboShim, BootstrapRepoAnswers>;
 
-		function getPath(strings: TemplateStringsArray) {
-			const output = strings.raw[0]
+		function getPath(strings: TemplateStringsArray, replacement?: string) {
+			const output = (replacement || strings[0])
 				.replace(/\{\{\s*turbo\.paths.root\s*\}\}/g, turbo.paths.root)
 				.replace(/\{\{\s*turbo\.paths.workspace\s*\}\}/g, turbo.paths.workspace)
 				.replace(/\{\{\s*workspace\s*\}\}/g, workspace);
@@ -611,7 +611,7 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 				dest: getPath`{{turbo.paths.root}}/package.json`
 			},
 			project: {
-				source: `${templateFile}`,
+				source: getPath`${templateFile}`,
 				dest: getPath`{{turbo.paths.root}}/{{workspace}}/package.json`
 			}
 		};
