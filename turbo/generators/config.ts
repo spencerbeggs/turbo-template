@@ -17,45 +17,55 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 	// create a generator
 	plop.setGenerator("ECMA package", {
 		description: "Adds a new ECMA package to the project",
-		prompts: [],
+		prompts: [...bootstrap.prompts],
 		actions: (answers) => {
 			const { workspace = "pkg" } = answers as BootstrapRepoAnswers;
 			const actions: Array<ActionTypes> = [];
 
-			// actions.push({
-			// 	type: "bootstrap-package-json",
-			// 	templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/package.json",
-			// 	workspace
-			// });
+			actions.push({
+				type: "bootstrap-package-json",
+				templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/package.json",
+				workspace
+			});
 
-			// actions.push({
-			// 	type: "add",
-			// 	path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
-			// 	templateFile: "../templates/ecma-package/tsconfig.json",
-			// 	transform(template: string) {
-			// 		const pkg = JSON.parse(template);
-			// 		pkg.extends = `./node_modules/${pkg.extends}`;
-			// 		return JSON.stringify(pkg, null, 2);
-			// 	}
-			// });
+			actions.push({
+				type: "add",
+				path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
+				templateFile: "../templates/ecma-package/tsconfig.json",
+				transform(template: string) {
+					const pkg = JSON.parse(template);
+					pkg.extends = `./node_modules/${pkg.extends}`;
+					return JSON.stringify(pkg, null, 2);
+				}
+			});
 
 			console.log(workspace);
 
 			actions.push({
 				type: "addMany",
-				destination: "{{turbo.paths.root}}/{{workspace}}",
-				templateFiles: ["templates/ecma-package/**/*"]
+				destination: `{{turbo.paths.root}}/${workspace}`,
+				base: "../templates/ecma-package",
+				templateFiles: [
+					"../templates/ecma-package/**/*",
+					"!../templates/ecma-package/.coverage",
+					"!../templates/ecma-package/.turbo",
+					"!../templates/ecma-package/node_modules",
+					"!../templates/ecma-package/dist",
+					"!../templates/ecma-package/package.json",
+					"!../templates/ecma-package/tsconfig.json"
+				],
+				verbose: true
 			});
 
-			// actions.push({
-			// 	type: "add-eslint-working-directory",
-			// 	workspace
-			// });
+			actions.push({
+				type: "add-eslint-working-directory",
+				workspace
+			});
 
-			// actions.push({
-			// 	type: "add-pnpm-workspace",
-			// 	workspace
-			// });
+			actions.push({
+				type: "add-pnpm-workspace",
+				workspace
+			});
 
 			return actions;
 		}
