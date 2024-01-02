@@ -167,6 +167,14 @@ class PackageJSON {
 		this.data.description = value;
 	}
 
+	get private() {
+		return this.data.private;
+	}
+
+	set private(value: boolean | undefined) {
+		this.data.private = value;
+	}
+
 	get homepage() {
 		return this.data.homepage as string;
 	}

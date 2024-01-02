@@ -2,6 +2,7 @@
 	"name": "@config/eslint",
 	"version": "1.0.1",
 	"type": "module",
+	"private": true,
 	"exports": {
 		".": {
 			"import": "./src/index.ts",

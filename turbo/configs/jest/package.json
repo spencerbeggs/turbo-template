@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"types": "index.d.ts",
 	"type": "module",
+	"private": true,
 	"dependencies": {
 		"@jest/console": "^29.7.0",
 		"@jest/globals": "^29.7.0",

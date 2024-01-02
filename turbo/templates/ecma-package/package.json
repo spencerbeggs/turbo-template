@@ -3,6 +3,7 @@
 	"description": "A template for creating EcmaScript packages.",
 	"version": "0.0.0",
 	"type": "module",
+	"private": true,
 	"exports": {
 		".": {
 			"import": "./src/index.ts",

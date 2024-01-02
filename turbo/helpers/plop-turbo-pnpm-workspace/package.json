@@ -3,6 +3,7 @@
 	"description": "Plop actions to modify pnpm workspaces from a Turporepo generator.",
 	"version": "2.0.0",
 	"type": "commonjs",
+	"private": true,
 	"exports": {
 		".": {
 			"import": "./src/index.ts",

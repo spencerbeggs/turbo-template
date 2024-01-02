@@ -2,6 +2,7 @@
 	"name": "@template/nextjs",
 	"description": "A template for creating a Next.JS app.",
 	"version": "0.0.0",
+	"private": true,
 	"license": "MIT",
 	"homepage": "https://github.com/spencerbeggs/turbo-template/turbo/generators/templates/nextjs#readme",
 	"repository": {
