@@ -1,21 +1,33 @@
 {
 	"name": "@config/eslint",
 	"version": "1.0.1",
-	"main": "src/index.ts",
-	"types": "src/index.ts",
-	"type": "module",
+	"type": "commonjs",
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"require": "./src/index.ts",
+			"default": "./src/index.ts",
+			"types": "./src/index.ts"
+		}
+	},
+	"publishConfig": {
+		"directory": "dist",
+		"linkDirectory": true,
+		"exports": {
+			".": {
+				"import": "./index.mjs",
+				"require": "./index.cjs",
+				"default": "./index.cjs",
+				"types": "./index.d.ts"
+			}
+		}
+	},
 	"scripts": {
 		"build": "tsup",
 		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
 		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
 		"preinstall": "turbo run build --output-logs=errors-only",
 		"typecheck": "tsc --noEmit"
-	},
-	"publishConfig": {
-		"directory": "dist",
-		"linkDirectory": true,
-		"main": "index.js",
-		"types": "index.d.ts"
 	},
 	"dependencies": {
 		"@babel/eslint-parser": "7.23.3",
