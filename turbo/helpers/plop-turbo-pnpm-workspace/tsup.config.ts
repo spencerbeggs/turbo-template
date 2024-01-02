@@ -6,7 +6,7 @@ export default defineConfig((options) => {
 	const isProduction = options.watch !== true;
 	return {
 		entry: ["./src/index.ts"],
-		format: "cjs",
+		format: ["esm", "cjs"],
 		outExtension({ format }) {
 			const ext = format === "cjs" ? "js" : "mjs";
 			return {
@@ -23,7 +23,7 @@ export default defineConfig((options) => {
 		config: true,
 		minify: false,
 		splitting: false,
-		cjsInterop: true,
+		cjsInterop: false,
 		// esbuildOptions(opts) {
 		// 	opts.target = "node16";
 		// 	opts.platform = "node";
@@ -37,9 +37,9 @@ export default defineConfig((options) => {
 			const pkg = json.default as PackageJson;
 			pkg.exports = {
 				".": {
-					import: "./index.js",
+					import: "./index.mjs",
 					require: "./index.js",
-					default: "./index.js",
+					default: "./index.mjs",
 					types: "./index.d.ts"
 				}
 			};

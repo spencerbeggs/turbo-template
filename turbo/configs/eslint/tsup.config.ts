@@ -8,7 +8,7 @@ export default defineConfig((options) => {
 		entry: ["./src/index.ts"],
 		format: ["esm", "cjs"],
 		outExtension({ format }) {
-			const ext = format === "cjs" ? "js" : "mjs";
+			const ext = format === "cjs" ? "cjs" : "js";
 			return {
 				js: `.${ext}`,
 				dts: ".d.ts"
@@ -23,7 +23,7 @@ export default defineConfig((options) => {
 		config: true,
 		minify: false,
 		splitting: false,
-		cjsInterop: false,
+		cjsInterop: true,
 		// esbuildOptions(opts) {
 		// 	opts.target = "node16";
 		// 	opts.platform = "node";
@@ -37,9 +37,9 @@ export default defineConfig((options) => {
 			const pkg = json.default as PackageJson;
 			pkg.exports = {
 				".": {
-					import: "./index.mjs",
-					require: "./index.js",
-					default: "./index.mjs",
+					import: "./index.js",
+					require: "./index.cjs",
+					default: "./index.cjs",
 					types: "./index.d.ts"
 				}
 			};
