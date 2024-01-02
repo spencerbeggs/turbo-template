@@ -44,7 +44,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			actions.push({
 				type: "addMany",
 				destination: "{{turbo.paths.root}}/{{workspace}}",
-				templateFiles: ["ecma-package/**/*", "!ecma-packages/package.json", "!ecma-package/tsconfig.json"]
+				templateFiles: ["{{turbo.paths.root}}/turbo/templates/ecma-package/**/*"]
 			});
 
 			// actions.push({
