@@ -19,7 +19,7 @@
 	"[markdown]": {
 		"editor.formatOnSave": false
 	},
-	"markdownlint.ignore": ["**/CHANGELONG.md", "**/LICENSE"],
+	"markdownlint.ignore": ["**/CHANGELOG.md", "**/LICENSE"],
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,
