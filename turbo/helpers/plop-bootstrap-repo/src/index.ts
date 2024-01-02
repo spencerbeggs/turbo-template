@@ -94,6 +94,17 @@ type Repository = {
 	url: string;
 };
 
+interface IFile {
+	source: string;
+	dest: string;
+}
+
+interface ICreate {
+	prettier: string;
+	root: IFile;
+	project: IFile;
+}
+
 class PackageJSON {
 	source: string;
 	dest: string;
@@ -113,28 +124,20 @@ class PackageJSON {
 		return typeof repository === "object";
 	}
 
-	static async create(answers: Merge<TurboShim, { workspace?: string }>) {
-		const options = await resolveConfig(`${answers.turbo.paths.root}/.prettierrc`);
+	static async create({ prettier, root, project }: ICreate) {
+		const options = await resolveConfig(prettier);
 
-		const root = {
-			source: `${answers.turbo.paths.root}/package.json`,
-			dest: `${answers.turbo.paths.root}/package.json`,
-			prettier: options,
-			isRoot: true
-		};
-		const project = {
-			source: answers.workspace
-				? `${answers.turbo.paths.workspace}/${answers.workspace}/package.json`
-				: `${answers.turbo.paths.workspace}/package.json`,
-			dest: answers.workspace
-				? `${answers.turbo.paths.root}/${answers.workspace}/package.json`
-				: `${answers.turbo.paths.root}/package.json`,
-			prettier: options,
-			isRoot: false
-		};
 		return {
-			root: new PackageJSON(await PackageJSON.read(root.source), root),
-			project: new PackageJSON(await PackageJSON.read(project.source), project)
+			root: new PackageJSON(await PackageJSON.read(root.source), {
+				...root,
+				prettier: options,
+				isRoot: true
+			}),
+			project: new PackageJSON(await PackageJSON.read(project.source), {
+				...project,
+				prettier: options,
+				isRoot: false
+			})
 		};
 	}
 
@@ -605,7 +608,8 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 			return output;
 		}
 
-		const jsons2 = {
+		const jsons = await PackageJSON.create({
+			prettier: getPath`{{turbo.paths.root}}/.prettierrc`,
 			root: {
 				source: getPath`{{turbo.paths.root}}/package.json`,
 				dest: getPath`{{turbo.paths.root}}/package.json`
@@ -614,11 +618,7 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 				source: getPath`${templateFile}`,
 				dest: getPath`{{turbo.paths.root}}/{{workspace}}/package.json`
 			}
-		};
-
-		console.log(jsons2);
-
-		const jsons = await PackageJSON.create(answers as Merge<TurboShim, BootstrapRepoAnswers>);
+		});
 
 		/** Rewites the package.json file */
 		async function rewrite(json: PackageJSON, pkg: Pkg) {
