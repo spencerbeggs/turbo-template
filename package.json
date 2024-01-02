@@ -32,7 +32,8 @@
 		"lint-fix:all": "turbo run eslint-fix",
 		"publish-packages": "turbo run publish-packages --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
 		"test": "turbo run test --color --filter=!@template/* --filter=!@plop/* --filter=!@config/*",
-		"test:all": "turbo run test --color"
+		"test:all": "turbo run test --color",
+		"debug:nextjs": "turbo run dev --filter=@template/nextjs"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",

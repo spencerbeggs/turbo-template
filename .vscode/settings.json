@@ -6,7 +6,7 @@
 		"./turbo/configs/jest",
 		"./turbo/helpers/plop-add-turbo-workspace",
 		"./turbo/helpers/plop-add-vscode-eslint-workspace",
-		"./turbo/helpers/@plop/bootstrap-repo",
+		"./turbo/helpers/plop-bootstrap-repo",
 		"./turbo/templates/ecma-package",
 		"./turbo/templates/nextjs"
 	],
@@ -26,9 +26,9 @@
 		"pnpm-lock.yaml": true
 	},
 	"files.exclude": {
-		"**/node_modules": false,
+		"**/node_modules": true,
 		"**/.turbo": true,
-		"**/dist": false,
+		"**/dist": true,
 		"**/.coverage": true
 	},
 	"[yaml]": {
