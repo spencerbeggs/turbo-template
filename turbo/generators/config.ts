@@ -31,7 +31,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			actions.push({
 				type: "add",
 				path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
-				templateFile: "templates/tsconfig.json",
+				templateFile: "{{turbo.paths.root}}/turbo/templates/ecma-package/tsconfig.json",
 				transform(template: string) {
 					const pkg = JSON.parse(template);
 					pkg.extends = `./node_modules/${pkg.extends}`;
@@ -42,7 +42,11 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			actions.push({
 				type: "addMany",
 				destination: "{{turbo.paths.root}}/{{workspace}}",
-				templateFiles: ["templates/**/*", "!templates/package.json", "!templates/tsconfig.json"]
+				templateFiles: [
+					"{{turbo.paths.root}}/turbo/templates/ecma-package/**/*",
+					"!{{turbo.paths.root}}/turbo/templates/ecma-packages/package.json",
+					"!{{turbo.paths.root}}/turbo/templates/ecma-package/tsconfig.json"
+				]
 			});
 
 			actions.push({
