@@ -44,22 +44,18 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			actions.push({
 				type: "addMany",
 				destination: "{{turbo.paths.root}}/{{workspace}}",
-				templateFiles: [
-					"../templates/ecma-package/**/*",
-					"!../templates/ecma-packages/package.json",
-					"!../templates/ecma-package/tsconfig.json"
-				]
+				templateFiles: ["ecma-package/**/*", "!ecma-packages/package.json", "!ecma-package/tsconfig.json"]
 			});
 
-			actions.push({
-				type: "add-eslint-working-directory",
-				workspace
-			});
+			// actions.push({
+			// 	type: "add-eslint-working-directory",
+			// 	workspace
+			// });
 
-			actions.push({
-				type: "add-pnpm-workspace",
-				workspace
-			});
+			// actions.push({
+			// 	type: "add-pnpm-workspace",
+			// 	workspace
+			// });
 
 			return actions;
 		}
