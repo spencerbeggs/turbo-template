@@ -1,0 +1,52 @@
+{
+	"name": "@template/ecma-package",
+	"description": "A template for creating EcmaScript packages.",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"require": null,
+			"types": "./src/index.ts"
+		}
+	},
+	"publishConfig": {
+		"directory": "dist",
+		"linkDirectory": true,
+		"exports": {
+			".": {
+				"import": "./index.mjs",
+				"require": "./index.cjs",
+				"types": "./index.d.ts"
+			}
+		}
+	},
+	"license": "MIT",
+	"homepage": "https://github.com/owner/repo#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/owner/repo.git"
+	},
+	"author": {
+		"name": "C. Spencer Beggs",
+		"email": "spencer@beg.gs"
+	},
+	"keywords": [],
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"build": "tsup-node",
+		"dev": "tsup-node --watch",
+		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
+		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"package": "build=$(while [[ ! -f \"$(pwd)/pnpm-workspace.yaml\" ]]; do cd ..; done; pwd)/build && cd dist && pnpm pack --pack-destination $build",
+		"publish-packages": "pnpm publish --no-git-checks --dry-run dist",
+		"test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' TS_JEST_DISABLE_VER_CHECKER=false pnpm exec jest --colors --passWithNoTests",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*"
+	}
+}

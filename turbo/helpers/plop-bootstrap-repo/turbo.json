@@ -1,0 +1,23 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"pipeline": {
+		"build": {
+			"dependsOn": ["typecheck"],
+			"outputs": ["dist/**"],
+			"inputs": ["src/**", "public/**", "package.json", "tsconfig.json", "tsup.config.ts"]
+		},
+		"eslint": {
+			"cache": false,
+			"outputs": [],
+			"inputs": ["src/**/*.ts", "package.json"]
+		},
+		"eslint-fix": {
+			"cache": false,
+			"outputs": []
+		},
+		"typecheck": {
+			"outputs": []
+		}
+	}
+}

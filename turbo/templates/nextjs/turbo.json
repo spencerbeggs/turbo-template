@@ -1,0 +1,32 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build", "typecheck"],
+			"outputs": [".next/**"],
+			"inputs": ["app/**", "public/**", "package.json", ".eslintignore", "tsconfig.json", "tsup.config.ts"]
+		},
+		"dev": {
+			"dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"]
+		},
+		"eslint": {
+			"cache": false,
+			"outputs": [],
+			"inputs": ["**/*.ts", "**/*.tsx", "turbo.json", "package.json"],
+			"env": ["NEXT_PUBLIC_SITE_DOMAIN"]
+		},
+		"eslint-fix": {
+			"cache": false,
+			"outputs": [],
+			"inputs": ["**/*.ts", "**/*.tsx", "turbo.json", "package.json"],
+			"env": ["NEXT_PUBLIC_SITE_DOMAIN"]
+		},
+		"typecheck": {
+			"outputs": []
+		},
+		"test": {
+			"outputs": []
+		}
+	}
+}

@@ -1,0 +1,51 @@
+{
+	"name": "@template/nextjs",
+	"description": "A template for creating a Next.JS app.",
+	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
+	"homepage": "https://github.com/spencerbeggs/turbo-template/turbo/generators/templates/nextjs#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/spencerbeggs/turbo-template.git"
+	},
+	"author": {
+		"name": "C. Spencer Beggs",
+		"email": "spencer@beg.gs"
+	},
+	"keywords": [],
+	"engines": {
+		"node": ">=16"
+	},
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev --turbo --port 3000",
+		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
+		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"start": "next start",
+		"test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' TS_JEST_DISABLE_VER_CHECKER=false pnpm exec jest --colors --passWithNoTests",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@tailwindcss/line-clamp": "^0.4.4",
+		"@vercel/analytics": "^1.1.1",
+		"@vercel/speed-insights": "^1.0.1",
+		"next": "^14.0.4",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*",
+		"@tailwindcss/aspect-ratio": "^0.4.2",
+		"@tailwindcss/container-queries": "^0.1.1",
+		"@tailwindcss/forms": "^0.5.7",
+		"@tailwindcss/typography": "^0.5.10",
+		"@turbo/gen": "^1.11.0",
+		"@types/react": "^18.2.46",
+		"@types/react-dom": "^18.2.17",
+		"autoprefixer": "^10",
+		"tailwindcss": "^3.3.6",
+		"vercel": "^33.0.1",
+		"webpack": "^5.89.0"
+	}
+}
