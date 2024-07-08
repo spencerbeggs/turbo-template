@@ -24,14 +24,13 @@ class VSCodeSettings {
 	}
 
 	static async create(answers: TurboAnswers): Promise<VSCodeSettings> {
-		const { turbo } = answers as TurboAnswers;
-		const settingsPath = `${turbo.paths.root}/.vscode/settings.json`;
-		const prettierPath = `${turbo.paths.root}/.prettierrc`;
+		const settingsPath = `${answers.turbo.paths.root}/.vscode/settings.json`;
+		const prettierPath = `${answers.turbo.paths.root}/.prettierrc`;
 		// Read the settings.json file
 		const fileContents = await readFile(settingsPath, "utf8");
 
 		// Parse the JSON content
-		const data = JSON.parse(fileContents);
+		const data = JSON.parse(fileContents) as Record<string, unknown>;
 		return new VSCodeSettings(data, settingsPath, prettierPath);
 	}
 
@@ -67,7 +66,7 @@ export interface DeleteESLintWorkingDirectoryAction extends PlopTypes.ActionConf
 	workspace: string;
 }
 
-export default async function (plop: PlopTypes.NodePlopAPI): Promise<void> {
+export default function (plop: PlopTypes.NodePlopAPI): void {
 	plop.setDefaultInclude({ actionTypes: true });
 
 	plop.setActionType("add-eslint-working-directory", async (answers, config) => {

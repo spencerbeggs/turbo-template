@@ -1,6 +1,6 @@
 import { cp, writeFile } from "node:fs/promises";
 import { defineConfig } from "tsup";
-import { PackageJson } from "type-fest";
+import type { PackageJson } from "type-fest";
 
 export default defineConfig((options) => {
 	const isProduction = options.watch !== true;

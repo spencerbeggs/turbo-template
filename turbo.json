@@ -1,7 +1,7 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"globalEnv": [],
-	"pipeline": {
+	"tasks": {
 		"publish-packages": {
 			"outputs": ["build/**"]
 		},

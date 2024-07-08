@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 const DOMAIN_URL = process.env.NEXT_PUBLIC_SITE_DOMAIN as string;
 

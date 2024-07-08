@@ -40,7 +40,7 @@
 	},
 	"devDependencies": {
 		"@config/tsconfig": "workspace:*",
-		"@turbo/gen": "1.11.2",
+		"@turbo/gen": "2.0.6",
 		"@types/js-yaml": "^4.0.9"
 	}
 }

@@ -4,13 +4,14 @@
 		"./turbo/configs/eslint",
 		"./turbo/configs/tsconfig",
 		"./turbo/configs/jest",
+		"./turbo/configs/turbo",
 		"./turbo/helpers/plop-add-turbo-workspace",
 		"./turbo/helpers/plop-add-vscode-eslint-workspace",
 		"./turbo/helpers/plop-bootstrap-repo",
 		"./turbo/templates/ecma-package",
 		"./turbo/templates/nextjs"
 	],
-	"eslint.experimental.useFlatConfig": true,
+	"eslint.useFlatConfig": true,
 	"eslint.useESLintClass": true,
 	"eslint.debug": true,
 	"editor.formatOnSave": true,
@@ -19,16 +20,15 @@
 	"[markdown]": {
 		"editor.formatOnSave": false
 	},
-	"markdownlint.ignore": ["**/CHANGELOG.md", "**/LICENSE"],
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,
 		"pnpm-lock.yaml": true
 	},
 	"files.exclude": {
-		"**/node_modules": true,
+		"**/node_modules": false,
 		"**/.turbo": true,
-		"**/dist": true,
+		"**/dist": false,
 		"**/.coverage": true
 	},
 	"[yaml]": {
@@ -50,8 +50,9 @@
 	"less.validate": false,
 	"scss.validate": false,
 	"npm.packageManager": "pnpm",
-	"stylelint.enable": false,
+	"stylelint.enable": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
+	"stylelint.stylelintPath": "node_modules/stylelint",
 	"terminal.integrated.profiles.osx": {
 		"zsh": {
 			"path": "zsh"
@@ -62,5 +63,6 @@
 			"url": "https://cdn.jsdelivr.net/npm/tsup/schema.json",
 			"fileMatch": ["package.json", "tsup.config.json"]
 		}
-	]
+	],
+	"turbo.useLocalTurbo": true
 }

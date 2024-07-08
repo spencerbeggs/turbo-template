@@ -323,10 +323,10 @@ export const bootstrap = {
 			name: "single",
 			message: "Will this child package be the only public package in the monorepo?",
 			type: "confirm",
-			default: async (answers: BootstrapRepoAnswers) => {
+			default: (answers: BootstrapRepoAnswers) => {
 				return !answers.init;
 			},
-			when: async (answers: BootstrapRepoAnswers) => {
+			when: (answers: BootstrapRepoAnswers) => {
 				if (answers.init) {
 					answers.single = false;
 				}
@@ -447,7 +447,7 @@ export const bootstrap = {
 				const repo = await Repo.create();
 				return `${repo.remote}#readme`;
 			},
-			when: async (answers: BootstrapRepoAnswers) => {
+			when: (answers: BootstrapRepoAnswers) => {
 				answers.root.pkg.homepage = `${answers.root.pkg.repository.url.replace(".git", "")}#readme`;
 				return false;
 			}
@@ -472,7 +472,7 @@ export const bootstrap = {
 			name: "child.pkg.name",
 			message: "Package name (npm)?",
 			type: "input",
-			default: async (answers: BootstrapRepoAnswers) => {
+			default: (answers: BootstrapRepoAnswers) => {
 				return slugify(answers.child.title, {
 					lower: true,
 					trim: true,
@@ -539,7 +539,7 @@ export const bootstrap = {
 				const repo = await Repo.create();
 				return repo.remote;
 			},
-			when: async (answers: BootstrapRepoAnswers) => {
+			when: (answers: BootstrapRepoAnswers) => {
 				set(answers, "child.pkg.repository.url", answers.root.pkg.repository.url);
 				return false;
 			}
@@ -548,7 +548,7 @@ export const bootstrap = {
 			name: "root.pkg.version",
 			message: "Root package version?",
 			default: "0.0.0",
-			when: (answers) => {
+			when: (answers: BootstrapRepoAnswers) => {
 				set(answers, "root.pkg.version", "0.0.0");
 				if (answers.init && answers.single) {
 					set(answers, "root.pkg.name", answers.child.pkg.name);
@@ -683,12 +683,12 @@ export default function generator(this: PlopTypes.PlopGenerator, plop: PlopTypes
 		}
 	});
 
-	plop.setActionType("add-dependency", async (answers, config) => {
+	plop.setActionType("add-dependency", (answers, config) => {
 		console.log(answers, config);
 		return `Added dependency`;
 	});
 
-	plop.setActionType("delete-dependency", async (answers, config) => {
+	plop.setActionType("delete-dependency", (answers, config) => {
 		console.log(answers, config);
 		return `Deleted dependency`;
 	});

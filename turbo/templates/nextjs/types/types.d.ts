@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
+import type React from "react";
 
 /** A special type that lets you declare a functional components with optional chrildren.
  * @example

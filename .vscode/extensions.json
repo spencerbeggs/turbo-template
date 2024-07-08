@@ -8,6 +8,7 @@
 		"davidanson.vscode-markdownlint",
 		"ms-vscode.js-debug-nightly",
 		"visualstudioexptteam.vscodeintellicode",
-		"yoavbls.pretty-ts-errors"
+		"yoavbls.pretty-ts-errors",
+		"vercel.turbo-vsc"
 	]
 }

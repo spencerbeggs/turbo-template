@@ -1,4 +1,3 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
 import "./global.css";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -11,7 +10,7 @@ const favicon = (path: string) => {
 	return base.href;
 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<head key="head">

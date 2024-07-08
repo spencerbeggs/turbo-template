@@ -1,6 +1,6 @@
-import { cp, writeFile } from "node:fs/promises";
+import { cp } from "node:fs/promises";
 import { defineConfig } from "tsup";
-import { PackageJson } from "type-fest";
+import { processPackageJson } from "@config/tsconfig";
 
 export default defineConfig((options) => {
 	const isProduction = options.watch !== true;
@@ -33,27 +33,7 @@ export default defineConfig((options) => {
 		sourcemap: !isProduction,
 		clean: true,
 		async onSuccess() {
-			const json = await import("./package.json");
-			const pkg = json.default as PackageJson;
-			pkg.exports = {
-				".": {
-					import: "./index.js",
-					require: "./index.cjs",
-					default: "./index.cjs",
-					types: "./index.d.ts"
-				}
-			};
-			delete pkg.publishConfig;
-			delete pkg.devDependencies;
-			delete pkg.scripts;
-			await writeFile("dist/package.json", JSON.stringify(pkg, null, 2), {
-				encoding: "utf-8"
-			});
-			if (pkg.files) {
-				for await (const file of pkg.files) {
-					await cp(`./${file}`, `dist/${file}`);
-				}
-			}
+			await processPackageJson(import.meta);
 			if (isProduction) {
 				await cp("./LICENSE", "./dist/LICENSE");
 				await cp("./README.md", "./dist/README.md");

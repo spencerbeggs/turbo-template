@@ -2,7 +2,7 @@
 	"name": "turbo-template",
 	"version": "0.0.0",
 	"description": "A nicely configured starting point for projects configured with Turborepo.",
-	"packageManager": "pnpm@8.13.1",
+	"packageManager": "pnpm@9.5.0",
 	"license": "MIT",
 	"homepage": "https://github.com/spencerbeggs/turbo-template#readme",
 	"repository": {
@@ -36,14 +36,12 @@
 		"debug:nextjs": "turbo run dev --filter=@template/nextjs"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.1",
 		"@config/eslint": "workspace:*",
 		"@config/jest": "workspace:*",
 		"@config/tsconfig": "workspace:*",
-		"@turbo/gen": "^1.11.2",
 		"@plop/bootstrap-repo": "workspace:*",
 		"@plop/turbo-pnpm-workspace": "workspace:*",
 		"@plop/turbo-vscode-eslint": "workspace:*",
-		"turbo": "1.11.2"
+		"@config/turbo": "workspace:*"
 	}
 }

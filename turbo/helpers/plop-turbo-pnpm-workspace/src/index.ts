@@ -26,8 +26,7 @@ class PNPMWorkspaces {
 	}
 
 	static async create(answers: TurboAnswers): Promise<PNPMWorkspaces> {
-		const { turbo } = answers as TurboAnswers;
-		const yamlPath = `${turbo.paths.root}/pnpm-workspace.yaml`;
+		const yamlPath = `${answers.turbo.paths.root}/pnpm-workspace.yaml`;
 		// Read the YAML file
 		const fileContents = await readFile(yamlPath, "utf8");
 
@@ -67,7 +66,7 @@ export interface DeletePNPMWorkspaceAction extends PlopTypes.ActionConfig {
 	workspace: string;
 }
 
-export default async function (plop: PlopTypes.NodePlopAPI): Promise<void> {
+export default function (plop: PlopTypes.NodePlopAPI): void {
 	plop.setDefaultInclude({ actionTypes: true });
 
 	plop.setActionType("add-pnpm-workspace", async (answers, config) => {

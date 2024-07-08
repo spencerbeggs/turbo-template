@@ -1,6 +1,5 @@
-import { cp } from "node:fs/promises";
 import { defineConfig } from "tsup";
-import { processPackageJson } from "./src/index.js";
+import { processPackageJson } from "@config/tsconfig";
 
 export default defineConfig({
 	entry: ["src/index.ts"],
@@ -8,11 +7,12 @@ export default defineConfig({
 	outDir: "dist",
 	publicDir: "public",
 	shims: true,
-	dts: true,
 	splitting: false,
 	sourcemap: false,
+	dts: true,
 	clean: true,
 	async onSuccess() {
+		// check if the file package.json exists
 		await processPackageJson(import.meta);
 	}
 });

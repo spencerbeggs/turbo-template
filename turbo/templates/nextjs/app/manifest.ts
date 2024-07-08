@@ -1,5 +1,4 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 const favicon = (path: string) => {
 	const base = new URL(`/favicons/${path}`, process.env.NEXT_PUBLIC_SITE_DOMAIN as string);
