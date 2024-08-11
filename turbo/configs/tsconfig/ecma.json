@@ -2,9 +2,9 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"display": "ECMA package",
 	"compilerOptions": {
-		"target": "ES2023",
+		"target": "ES2022",
+		"lib": ["dom", "esnext"],
 		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
 		"composite": false,
 		"declaration": true,
 		"declarationMap": true,
@@ -14,6 +14,7 @@
 		"resolveJsonModule": true,
 		"inlineSources": false,
 		"isolatedModules": true,
+		"moduleResolution": "NodeNext",
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
 		"preserveWatchOutput": true,
@@ -21,8 +22,5 @@
 		"strict": true,
 		"strictNullChecks": true
 	},
-	"exclude": ["node_modules"],
-	"ts-node": {
-		"esm": true
-	}
+	"exclude": ["node_modules"]
 }

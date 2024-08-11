@@ -1,7 +1,8 @@
-import type { PlopTypes } from "@turbo/gen";
-import { bootstrap, type BootstrapPackageJsonAction, type BootstrapRepoAnswers } from "@plop/bootstrap-repo";
+import { bootstrap } from "@plop/bootstrap-repo";
+import type { BootstrapPackageJsonAction, BootstrapRepoAnswers } from "@plop/bootstrap-repo";
 import type { AddPNPMWorkspaceAction } from "@plop/turbo-pnpm-workspace";
 import type { AddESLintWorkingDirectoryAction } from "@plop/turbo-vscode-eslint";
+import type { PlopTypes } from "@turbo/gen";
 
 type ActionTypes =
 	| PlopTypes.ActionType
@@ -20,7 +21,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 		prompts: [...bootstrap.prompts],
 		actions: (answers) => {
 			const { workspace = "pkg" } = answers as BootstrapRepoAnswers;
-			const actions: Array<ActionTypes> = [];
+			const actions: ActionTypes[] = [];
 
 			actions.push({
 				type: "bootstrap-package-json",
@@ -31,14 +32,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
 			actions.push({
 				type: "add",
 				path: "{{turbo.paths.root}}/{{workspace}}/tsconfig.json",
-				templateFile: "../templates/ecma-package/tsconfig.json",
-				transform(template: string) {
-					const pkg = JSON.parse(template);
-					if (pkg.extends.startsWith("@")) {
-						pkg.extends = `./node_modules/${pkg.extends}`;
-					}
-					return JSON.stringify(pkg, null, 2);
-				}
+				templateFile: "../templates/ecma-package/tsconfig.json"
 			});
 
 			actions.push({

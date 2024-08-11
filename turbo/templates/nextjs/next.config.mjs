@@ -58,43 +58,6 @@ const config = async (phase) => {
 					]
 				}
 			];
-		},
-		webpack: (config, { webpack }) => {
-			// if (isDev && process.env.APP_ENV === "local") {
-			// 	const localhost = new URL(process.env.DEV_ASSET_PREFIX as string).host;
-			// 	config.module.rules.push({
-			// 		test: /\.js$/,
-			// 		loader: "string-replace-loader",
-			// 		options: {
-			// 			search: "${url}/_next/webpack-hmr",
-			// 			replace: `wss://${localhost}/_next/webpack-hmr`
-			// 		}
-			// 	});
-			// }
-			config.plugins.push(
-				// provides commonly used modules and their exports as global variables
-				// when ever the global is refeferenced in a module
-				new webpack.ProvidePlugin({
-					react: "react",
-					React: "react",
-					Component: ["react", "Component"],
-					PureComponent: ["react", "PureComponent"],
-					memo: ["react", "memo"],
-					Fragment: ["react", "Fragment"],
-					useState: ["react", "useState"],
-					useEffect: ["react", "useEffect"],
-					useRef: ["react", "useRef"],
-					useReducer: ["react", "useReducer"],
-					useCallback: ["react", "useCallback"],
-					useLayoutEffect: ["react", "useLayoutEffect"],
-					createRef: ["react", "createRef"],
-					createElement: ["react", "createElement"],
-					GetServerSideProps: ["next", "GetServerSideProps"],
-					NextPageContext: ["next", "NextPageContext"]
-				})
-			);
-
-			return config;
 		}
 	};
 };

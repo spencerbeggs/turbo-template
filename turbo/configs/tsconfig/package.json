@@ -1,35 +1,46 @@
 {
 	"name": "@config/tsconfig",
-	"version": "1.0.1",
-	"type": "module",
+	"version": "0.0.0",
 	"private": true,
-	"scripts": {
-		"build": "NODE_OPTIONS=\"--no-warnings\" tsup-node",
-		"preinstall": "turbo run build --output-logs=errors-only"
-	},
+	"type": "module",
 	"exports": {
 		".": {
 			"import": "./src/index.ts",
 			"types": "./src/index.ts"
-		}
-	},
-	"dependencies": {
-		"@swc/core": "1.6.13",
-		"ts-node": "10.9.2",
-		"tsup": "8.1.0",
-		"type-fest": "4.21.0",
-		"typescript": "5.5.3"
-	},
-	"devDependencies": {
-		"@types/node": "20.14.10"
+		},
+		"./base.json": "./base.json",
+		"./commonjs.json": "./commonjs.json",
+		"./ecma.json": "./ecma.json",
+		"./nextjs.json": "./nextjs.json",
+		"./react-library.json": "./react-library.json"
 	},
 	"files": [
 		"base.json",
 		"commonjs.json",
 		"ecma.json",
 		"nextjs.json",
-		"test.json"
+		"react-library.json"
 	],
+	"scripts": {
+		"build": "tsup",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix .",
+		"format:package": "sort-package-json",
+		"format:package:check": "sort-package-json --check",
+		"preinstall": "turbo run build --output-logs=errors-only"
+	},
+	"dependencies": {
+		"@babel/core": "^7.23.5",
+		"@swc/core": "^1.4.2",
+		"esbuild": "^0.23.0",
+		"ts-node": "^10.9.2",
+		"tsup": "^8.0.2",
+		"type-fest": "^4.10.3",
+		"typescript": "^5.4.0"
+	},
+	"devDependencies": {
+		"@types/node": "22.2.0"
+	},
 	"publishConfig": {
 		"directory": "dist"
 	}

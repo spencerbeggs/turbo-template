@@ -29,17 +29,17 @@
 		"email": "spencer@beg.gs"
 	},
 	"scripts": {
-		"build": "tsup-node",
-		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
-		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"build": "tsup",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix .",
 		"preinstall": "turbo run build --output-logs=errors-only",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
-		"prettier": "^3.3.2"
+		"prettier": "^3.3.3"
 	},
 	"devDependencies": {
 		"@config/tsconfig": "workspace:*",
-		"@turbo/gen": "2.0.6"
+		"@turbo/gen": "2.0.12"
 	}
 }

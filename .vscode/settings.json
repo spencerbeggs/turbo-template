@@ -23,12 +23,13 @@
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,
+		"**/vednor": true,
 		"pnpm-lock.yaml": true
 	},
 	"files.exclude": {
-		"**/node_modules": false,
+		"**/node_modules": true,
 		"**/.turbo": true,
-		"**/dist": false,
+		"**/dist": true,
 		"**/.coverage": true
 	},
 	"[yaml]": {
@@ -50,9 +51,9 @@
 	"less.validate": false,
 	"scss.validate": false,
 	"npm.packageManager": "pnpm",
-	"stylelint.enable": true,
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"stylelint.stylelintPath": "node_modules/stylelint",
+	"stylelint.packageManager": "pnpm",
+	"stylelint.enable": true,
 	"terminal.integrated.profiles.osx": {
 		"zsh": {
 			"path": "zsh"

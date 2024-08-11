@@ -1,9 +1,53 @@
-import { dir } from "node:console";
 import { cp, writeFile, readFile } from "node:fs/promises";
-import { PackageJson } from "type-fest";
+import { dirname } from "node:path";
+import { pathToFileURL } from "node:url";
+import type { Options } from "tsup";
+import type { PackageJson } from "type-fest";
 
-export const processPackageJson = async (meta: ImportMeta) => {
-	const root = new URL(meta.url);
+const reduceConditionalExports = (exportItems: PackageJson.ExportConditions, singleEntry = true) => {
+	const entries = Object.entries(exportItems);
+	return entries.reduce((acc, [key, value]) => {
+		if (!acc["import"]) {
+			acc["import"] = null;
+		}
+		if (!acc["require"]) {
+			acc["require"] = null;
+		}
+		if (!acc["default"]) {
+			acc["default"] = null;
+		}
+		if (!acc["types"]) {
+			acc["types"] = null;
+		}
+		if (typeof value === "string") {
+			let filename = value.split("/").pop() as string;
+			let root = "./";
+			if (!singleEntry) {
+				const arr = value.match(/^.*\//g);
+				if (arr) {
+					root = arr[0];
+				}
+			}
+			filename = filename.replace(/^.*\//, "");
+			if (key === "types" && filename.endsWith(".ts") && !filename.endsWith(".d.ts")) {
+				filename = filename.replace(".ts", ".d.ts");
+			} else if (filename.endsWith(".ts")) {
+				filename = filename.replace(".ts", ".js");
+			}
+
+			acc[key] = `${root}${filename}`;
+		} else if (typeof value === "object" && value !== null) {
+			acc[key] = reduceConditionalExports(value as PackageJson.ExportConditions);
+		}
+		return acc;
+	}, {} as PackageJson.ExportConditions);
+};
+
+type PackageCallback = (pkg: PackageJson) => void;
+
+export const processPackageJson = async (options: Options, cb: PackageCallback = () => void 0) => {
+	const root = pathToFileURL(`${dirname(options.tsconfig as string)}/`);
+	console.log(options);
 	const source = new URL("./package.json", root);
 	const dest = new URL("./dist/package.json", root);
 	const json = await readFile(source.pathname, {
@@ -11,20 +55,25 @@ export const processPackageJson = async (meta: ImportMeta) => {
 	});
 	const pkg = JSON.parse(json) as PackageJson;
 	if (pkg.exports) {
-		const newExports = Object.entries(pkg.exports).reduce((acc, [exportKey, exportItems]) => {
-			console.log(exportKey, exportItems);
+		const originalExports = Object.entries(pkg.exports);
+		const newExports = originalExports.reduce((acc, [exportKey, exportItems]) => {
 			if (typeof exportItems !== "string") {
-				acc[exportKey] = Object.entries(exportItems as Record<string, string>).reduce(
-					(acc2, [key, value]) => {
-						if (key === "types") {
-							acc2[key] = value.replace("src/", "").replace(".ts", ".d.ts");
-						} else {
-							acc2[key] = value.replace("src/", "").replace(".ts", ".js");
-						}
-						return acc2;
-					},
-					{} as Record<string, string>
-				);
+				const singleEntry = Array.isArray(options.entry) && options.entry.length === 1;
+				acc[exportKey] = reduceConditionalExports(exportItems as Record<string, string>, singleEntry);
+			} else {
+				if (exportKey === "types") {
+					acc[exportKey] =
+						exportItems.endsWith(".ts") && !exportItems.endsWith(".d.ts")
+							? exportItems.replace(".ts", ".d.ts")
+							: exportItems;
+				} else {
+					const publicDirname = options.publicDir === true ? "public" : options.publicDir;
+					if (options.publicDir && exportItems.startsWith(`./${publicDirname}/`)) {
+						acc[exportKey] = exportItems.replace(`./${publicDirname}/`, "./");
+					} else {
+						acc[exportKey] = exportItems.endsWith(".ts") ? exportItems.replace(".ts", ".js") : exportItems;
+					}
+				}
 			}
 			return acc;
 		}, {} as PackageJson.ExportConditions);
@@ -34,13 +83,21 @@ export const processPackageJson = async (meta: ImportMeta) => {
 	delete pkg.devDependencies;
 	delete pkg.scripts;
 	if (pkg.files) {
-		for await (const file of pkg.files) {
+		for await (const [i, file] of pkg.files.entries()) {
 			const source = new URL(`./${file}`, root);
-			const dest = new URL(`./dist/${file}`, root);
+			let dest = new URL(`./${options.outDir}/${file}`, root);
+			if (file.startsWith("public/")) {
+				dest = new URL(`./${options.outDir}/${file.substring(7)}`, root);
+				pkg.files[i] = file.substring(7);
+			}
 			await cp(source, dest);
 		}
 	}
-	console.log(pkg);
+
+	if (cb) {
+		cb(pkg);
+	}
+
 	await writeFile(dest, JSON.stringify(pkg, null, 2), {
 		encoding: "utf-8"
 	});

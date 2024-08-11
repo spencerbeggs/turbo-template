@@ -4,24 +4,25 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsup",
-		"eslint": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint .",
-		"eslint-fix": "NODE_OPTIONS='--experimental-specifier-resolution=node' pnpm exec eslint . --fix",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix .",
 		"preinstall": "turbo run build --output-logs=errors-only",
 		"typecheck": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@changesets/cli": "^2.27.7",
-		"@turbo/gen": "^2.0.6",
-		"turbo": "2.0.6"
+		"@turbo/gen": "^2.0.10",
+		"turbo": "^2.0.10",
+		"workspace-tools": "^0.36.4"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*"
 	},
 	"exports": {
 		".": {
 			"import": "./src/index.ts",
 			"types": "./src/index.ts"
 		}
-	},
-	"devDependencies": {
-		"@config/tsconfig": "workspace:*"
 	},
 	"publishConfig": {
 		"directory": "dist"

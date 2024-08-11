@@ -1,12 +1,11 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
+import slugify from "@sindresorhus/slugify";
 import type { PlopTypes } from "@turbo/gen";
 import { load } from "js-yaml";
-import get from "lodash/get";
-import set from "lodash/set";
+import { get, set } from "lodash";
 import { resolveConfig, format, type Options as PrettierOptions } from "prettier";
 import { valid } from "semver";
-import slugify from "slugify";
 import type { Merge, PackageJson } from "type-fest";
 import { Repo } from "./repo.js";
 
@@ -371,11 +370,7 @@ export const bootstrap = {
 			default: async (answers: BootstrapRepoAnswers) => {
 				const pkg = await ProjectConfig.packageJson();
 				if (answers.init) {
-					return slugify(answers.root.title, {
-						lower: true,
-						trim: true,
-						strict: true
-					});
+					return slugify(answers.root.title);
 				}
 				return pkg.name;
 			},
@@ -473,11 +468,7 @@ export const bootstrap = {
 			message: "Package name (npm)?",
 			type: "input",
 			default: (answers: BootstrapRepoAnswers) => {
-				return slugify(answers.child.title, {
-					lower: true,
-					trim: true,
-					strict: true
-				});
+				return slugify(answers.child.title);
 			},
 			validate: async (input: string) => {
 				const { default: validatePackageName } = await import("validate-npm-package-name");

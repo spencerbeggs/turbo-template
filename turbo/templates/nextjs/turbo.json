@@ -5,7 +5,7 @@
 		"build": {
 			"dependsOn": ["^build", "typecheck"],
 			"outputs": [".next/**"],
-			"inputs": ["app/**", "public/**", "package.json", ".eslintignore", "tsconfig.json", "tsup.config.ts"]
+			"inputs": ["app/**", "public/**", "package.json", "tsconfig.json", "tsup.config.ts"]
 		},
 		"dev": {
 			"persistent": true

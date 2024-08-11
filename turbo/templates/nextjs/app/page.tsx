@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import { Page } from "@components/structure";
 import { Headline } from "@components/text";
+import type { Metadata } from "next";
 
 export default function Homepage() {
 	return (

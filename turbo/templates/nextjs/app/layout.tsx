@@ -1,9 +1,9 @@
 import "./global.css";
 
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@modules/footer";
 import { Navigation } from "@modules/navigation";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const favicon = (path: string) => {
 	const base = new URL(`/favicons/${path}`, process.env.NEXT_PUBLIC_SITE_DOMAIN as string);

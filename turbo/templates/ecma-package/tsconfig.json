@@ -1,5 +1,5 @@
 {
-	"extends": "./node_modules/@config/tsconfig/ecma.json",
+	"extends": "@config/tsconfig/ecma.json",
 	"include": ["**/*.ts"],
 	"compilerOptions": {
 		"noEmit": true,

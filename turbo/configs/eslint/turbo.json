@@ -2,17 +2,13 @@
 	"$schema": "https://turbo.build/schema.json",
 	"extends": ["//"],
 	"tasks": {
-		"build": {
-			"dependsOn": ["typecheck"],
-			"outputs": ["dist/**"],
-			"inputs": ["src/**", "public/**", "package.json", "tsconfig.json", "tsup.config.ts"]
-		},
 		"eslint": {
 			"cache": false,
 			"outputs": [],
 			"inputs": ["src/**/*.ts", "package.json"]
 		},
 		"eslint-fix": {
+			"inputs": ["src/**/*.ts", "package.json"],
 			"cache": false,
 			"outputs": []
 		},

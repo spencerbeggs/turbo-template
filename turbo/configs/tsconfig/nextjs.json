@@ -1,28 +1,25 @@
 {
-	"include": ["next-env.d.ts", "middleware.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types/**/*.ts"],
-	"exclude": ["node_modules", "dist", "build", ".turbo", ".next"],
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Next.js",
+	"extends": "./base.json",
 	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"lib": ["dom", "dom.iterable", "esnext", "ES2015.Iterable"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
+		"incremental": true,
 		"esModuleInterop": true,
-		"module": "esnext",
-		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
-		"incremental": true,
-		"plugins": [
-			{
-				"name": "next"
-			}
-		],
 		"paths": {
-			"@vercel/analytics/react": ["./node_modules/@vercel/analytics/dist/react"]
+			"\\./*.js": ["./$1"]
 		},
-		"typeRoots": ["./node_modules/@types", "./types/*.d.ts"]
+		"typeRoots": ["./node_modules/@types", "./typings"]
 	}
 }

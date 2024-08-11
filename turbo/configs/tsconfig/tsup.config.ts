@@ -1,10 +1,17 @@
-import { cp } from "node:fs/promises";
+import type { Options } from "tsup";
 import { defineConfig } from "tsup";
 import { processPackageJson } from "./src/index.js";
 
 export default defineConfig({
 	entry: ["src/index.ts"],
 	format: "esm",
+	outExtension({ format }) {
+		const ext = format === "cjs" ? "cjs" : "js";
+		return {
+			js: `.${ext}`,
+			dts: ".d.ts"
+		};
+	},
 	outDir: "dist",
 	publicDir: "public",
 	shims: true,
@@ -13,6 +20,6 @@ export default defineConfig({
 	sourcemap: false,
 	clean: true,
 	async onSuccess() {
-		await processPackageJson(import.meta);
+		await processPackageJson(this as Options);
 	}
 });

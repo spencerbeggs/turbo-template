@@ -3,8 +3,32 @@
 	"extends": ["//"],
 	"tasks": {
 		"build": {
-			"inputs": ["src/**/*.ts", "public/**", "package.json", "tsup.config.ts", "tsconfig.json"],
-			"outputs": ["dist/**"]
+			"inputs": ["**/*.ts", "package.json"],
+			"outputLogs": "new-only"
+		},
+		"eslint": {
+			"cache": false,
+			"dependsOn": ["format:package:check"],
+			"inputs": ["index.ts", "index.d.ts", "package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"eslint-fix": {
+			"cache": false,
+			"dependsOn": ["format:package"],
+			"inputs": ["**/*.ts", "package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"format:package": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"format:package:check": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
 		}
 	}
 }

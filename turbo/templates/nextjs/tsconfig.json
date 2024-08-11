@@ -1,13 +1,5 @@
 {
-	"include": [
-		"next-env.d.ts",
-		"middleware.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		".next/types/**/*.ts",
-		"types/**/*.ts",
-		"turbo/generators/config.ts"
-	],
+	"include": ["next-env.d.ts", "middleware.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "types/**/*.ts"],
 	"exclude": ["node_modules", "dist", "build", ".turbo", ".next"],
 	"compilerOptions": {
 		"target": "es5",
@@ -19,7 +11,6 @@
 		"esModuleInterop": true,
 		"module": "esnext",
 		"moduleResolution": "bundler",
-		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
@@ -29,15 +20,18 @@
 			}
 		],
 		"paths": {
-			"@clients/*": ["./components/clients/*"],
-			"@components/*": ["./components/base/*"],
-			"@gadgets/*": ["./components/gadgets/*"],
-			"@widgets/*": ["./components/widgets/*"],
-			"@modules/*": ["./components/modules/*"],
-			"@layouts/*": ["./components/layouts/*"],
-			"@hooks/*": ["./components/hooks/*"],
-			"@vercel/analytics/*": ["./node_modules/@vercel/analytics/dist/*"]
+			"@clients/*": ["./app/components/clients/*"],
+			"@components/*": ["./app/components/base/*"],
+			"@helpers/*": ["./app/components/helpers/*"],
+			"@gadgets/*": ["./app/components/gadgets/*"],
+			"@widgets/*": ["./app/components/widgets/*"],
+			"@modules/*": ["./app/components/modules/*"],
+			"@layouts/*": ["./app/components/layouts/*"],
+			"@prebuilt/*": ["./app/prebuilt_modules//*"],
+			"@hooks/*": ["./app/components/hooks/*"],
+			"@resources/*": ["./app/resources/*"],
+			"@vercel/analytics/react": ["./node_modules/@vercel/analytics/dist/react"]
 		},
-		"typeRoots": ["node_modules/@types", "types"]
+		"typeRoots": ["./node_modules/@types", "./types"]
 	}
 }

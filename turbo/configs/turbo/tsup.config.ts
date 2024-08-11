@@ -1,5 +1,6 @@
-import { defineConfig } from "tsup";
 import { processPackageJson } from "@config/tsconfig";
+import { defineConfig } from "tsup";
+import type { Options } from "tsup";
 
 export default defineConfig({
 	entry: ["src/index.ts"],
@@ -12,7 +13,6 @@ export default defineConfig({
 	dts: true,
 	clean: true,
 	async onSuccess() {
-		// check if the file package.json exists
-		await processPackageJson(import.meta);
+		await processPackageJson(this as Options);
 	}
 });
