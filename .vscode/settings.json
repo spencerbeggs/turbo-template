@@ -1,15 +1,17 @@
 {
 	"eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
 	"eslint.workingDirectories": [
-		"./lib/configs/eslint",
-		"./lib/configs/tsconfig",
-		"./lib/configs/jest",
-		"./lib/helpers/plop-add-turbo-workspace",
-		"./lib/helpers/plop-add-vscode-eslint-workspace",
-		"./lib/helpers/plop-bootstrap-repo",
-		"./lib/generators/ecma-package"
+		"./turbo/configs/eslint",
+		"./turbo/configs/tsconfig",
+		"./turbo/configs/jest",
+		"./turbo/configs/turbo",
+		"./turbo/helpers/plop-add-turbo-workspace",
+		"./turbo/helpers/plop-add-vscode-eslint-workspace",
+		"./turbo/helpers/plop-bootstrap-repo",
+		"./turbo/templates/ecma-package",
+		"./turbo/templates/nextjs"
 	],
-	"eslint.experimental.useFlatConfig": true,
+	"eslint.useFlatConfig": true,
 	"eslint.useESLintClass": true,
 	"eslint.debug": true,
 	"editor.formatOnSave": true,
@@ -21,6 +23,7 @@
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/dist": true,
+		"**/vednor": true,
 		"pnpm-lock.yaml": true
 	},
 	"files.exclude": {
@@ -48,8 +51,9 @@
 	"less.validate": false,
 	"scss.validate": false,
 	"npm.packageManager": "pnpm",
-	"stylelint.enable": false,
 	"typescript.tsdk": "node_modules/typescript/lib",
+	"stylelint.packageManager": "pnpm",
+	"stylelint.enable": true,
 	"terminal.integrated.profiles.osx": {
 		"zsh": {
 			"path": "zsh"
@@ -60,5 +64,6 @@
 			"url": "https://cdn.jsdelivr.net/npm/tsup/schema.json",
 			"fileMatch": ["package.json", "tsup.config.json"]
 		}
-	]
+	],
+	"turbo.useLocalTurbo": true
 }

@@ -1,0 +1,19 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"eslint": {
+			"cache": false,
+			"outputs": [],
+			"inputs": ["src/**/*.ts", "package.json"]
+		},
+		"eslint-fix": {
+			"inputs": ["src/**/*.ts", "package.json"],
+			"cache": false,
+			"outputs": []
+		},
+		"typecheck": {
+			"outputs": []
+		}
+	}
+}

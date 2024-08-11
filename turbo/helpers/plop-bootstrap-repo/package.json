@@ -1,0 +1,42 @@
+{
+	"name": "@plop/bootstrap-repo",
+	"description": "Bootstrap a new repo with Plop",
+	"version": "1.1.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"types": "./src/index.ts"
+		}
+	},
+	"publishConfig": {
+		"directory": "dist"
+	},
+	"scripts": {
+		"build": "tsup",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix .",
+		"preinstall": "turbo run build --output-logs=errors-only",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@sindresorhus/slugify": "^2.2.1",
+		"@turbo/gen": "2.0.12",
+		"js-yaml": "^4.1.0",
+		"lodash": "^4.17.21",
+		"octokit": "^4.0.2",
+		"prettier": "^3.3.3",
+		"semver": "^7.5.2",
+		"validate-npm-package-name": "^5.0.1"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*",
+		"@octokit/types": "^13.5.0",
+		"@turbo/gen": "1.11.2",
+		"@types/js-yaml": "^4.0.9",
+		"@types/lodash": "^4.17.7",
+		"@types/semver": "^7.5.8",
+		"@types/validate-npm-package-name": "^4.0.2"
+	}
+}

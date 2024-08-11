@@ -1,12 +1,30 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalEnv": [],
-	"pipeline": {
-		"types": {
-			"outputs": []
+	"ui": "tui",
+	"tasks": {
+		"//#eslint": {
+			"dependsOn": ["format:package:check"],
+			"inputs": ["*.js"],
+			"outputs": [],
+			"env": [],
+			"outputLogs": "new-only"
 		},
-		"test": {
-			"outputs": []
+		"//#eslint-fix": {
+			"dependsOn": ["format:package"],
+			"inputs": ["*.js"],
+			"outputs": [],
+			"env": [],
+			"outputLogs": "new-only"
+		},
+		"//#format:package": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"//#format:package:check": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
 		}
 	}
 }

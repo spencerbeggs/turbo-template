@@ -1,0 +1,34 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"build": {
+			"inputs": ["**/*.ts", "package.json"],
+			"outputLogs": "new-only"
+		},
+		"eslint": {
+			"cache": false,
+			"dependsOn": ["format:package:check"],
+			"inputs": ["index.ts", "index.d.ts", "package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"eslint-fix": {
+			"cache": false,
+			"dependsOn": ["format:package"],
+			"inputs": ["**/*.ts", "package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"format:package": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		},
+		"format:package:check": {
+			"inputs": ["package.json"],
+			"outputs": [],
+			"outputLogs": "new-only"
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"name": "@config/turbo",
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "tsup",
+		"eslint": "eslint .",
+		"eslint-fix": "eslint --fix .",
+		"preinstall": "turbo run build --output-logs=errors-only",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@changesets/cli": "^2.27.7",
+		"@turbo/gen": "^2.0.10",
+		"turbo": "^2.0.10",
+		"workspace-tools": "^0.36.4"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*"
+	},
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"types": "./src/index.ts"
+		}
+	},
+	"publishConfig": {
+		"directory": "dist"
+	}
+}

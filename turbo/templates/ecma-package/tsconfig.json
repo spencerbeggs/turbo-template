@@ -1,0 +1,8 @@
+{
+	"extends": "@config/tsconfig/ecma.json",
+	"include": ["**/*.ts"],
+	"compilerOptions": {
+		"noEmit": true,
+		"allowImportingTsExtensions": true
+	}
+}

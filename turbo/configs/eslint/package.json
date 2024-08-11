@@ -1,0 +1,49 @@
+{
+	"name": "@config/eslint",
+	"version": "1.0.1",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": {
+			"import": "./src/index.ts",
+			"require": "./src/index.ts",
+			"default": "./src/index.ts",
+			"types": "./src/index.ts"
+		}
+	},
+	"publishConfig": {
+		"directory": "dist"
+	},
+	"scripts": {
+		"eslint": "eslint --no-error-on-unmatched-pattern",
+		"eslint-fix": "eslint --fix --no-error-on-unmatched-pattern",
+		"format:package": "sort-package-json",
+		"format:package:check": "sort-package-json --check"
+	},
+	"dependencies": {
+		"@babel/eslint-parser": "7.25.1",
+		"@babel/preset-env": "7.25.3",
+		"@eslint/compat": "1.1.1",
+		"@eslint/js": "9.9.0",
+		"@next/eslint-plugin-next": "14.2.5",
+		"@types/eslint": "9.6.0",
+		"@types/eslint__js": "8.42.3",
+		"eslint": "9.9.0",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-config-turbo": "2.0.12",
+		"eslint-plugin-import": "2.29.1",
+		"eslint-plugin-prettier": "5.2.1",
+		"eslint-plugin-react": "7.35.0",
+		"eslint-plugin-tsdoc": "0.3.0",
+		"eslint-plugin-turbo": "2.0.12",
+		"globals": "15.9.0",
+		"prettier": "3.3.3",
+		"sort-package-json": "^2.10.0",
+		"stylelint": "16.8.1",
+		"stylelint-config-standard": "^36.0.1",
+		"typescript-eslint": "^8.0.1"
+	},
+	"devDependencies": {
+		"@config/tsconfig": "workspace:*"
+	}
+}
